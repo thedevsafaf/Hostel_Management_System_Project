@@ -1,0 +1,615 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8AF802FB-9372-4BC0-B057-405708BD6233}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hostel_Management_System_Project</RootNamespace>
+    <AssemblyName>Hostel_Management_System_Project</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44354</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="401.aspx" />
+    <Content Include="404.aspx" />
+    <Content Include="500.aspx" />
+    <Content Include="AddAttendance.aspx" />
+    <Content Include="AddFoodMenuItem.aspx" />
+    <Content Include="AddHostel.aspx" />
+    <Content Include="AdminDashboard.aspx" />
+    <Content Include="ApprovalParentsList.aspx" />
+    <Content Include="ApprovalStudentsList.aspx" />
+    <Content Include="ComplaintRegister.aspx" />
+    <Content Include="ComplaintReply.aspx" />
+    <Content Include="FeedbackSuccess.aspx" />
+    <Content Include="HostelStaffRegister.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="ParentDashboard.aspx" />
+    <Content Include="ParentRegister.aspx" />
+    <Content Include="Password.aspx" />
+    <Content Include="PaymentSuccess.aspx" />
+    <Content Include="ProvideFeedback.aspx" />
+    <Content Include="P_ViewAttendanceList.aspx" />
+    <Content Include="P_ViewProfile.aspx" />
+    <Content Include="RoomDetails.aspx" />
+    <Content Include="RoomPhotoUpload.aspx" />
+    <Content Include="RoomRegister.aspx" />
+    <Content Include="SendNotifications.aspx" />
+    <Content Include="StudentDashboard.aspx" />
+    <Content Include="StudentRegister.aspx" />
+    <Content Include="S_CancelMyBooking.aspx" />
+    <Content Include="S_ComplaintStatus.aspx" />
+    <Content Include="S_MakePayment.aspx" />
+    <Content Include="S_RoomBooking.aspx" />
+    <Content Include="S_RoomDetails.aspx" />
+    <Content Include="S_UpdateProfile.aspx" />
+    <Content Include="S_ViewAttendanceList.aspx" />
+    <Content Include="S_ViewAvailableRoomsList.aspx" />
+    <Content Include="S_ViewFoodMenuItemsList.aspx" />
+    <Content Include="S_ViewHostelDetails.aspx" />
+    <Content Include="S_ViewMyBooking.aspx" />
+    <Content Include="S_ViewNotificationsList.aspx" />
+    <Content Include="S_ViewPaymentHistory.aspx" />
+    <Content Include="S_ViewProfile.aspx" />
+    <Content Include="S_ViewRoomFacilitiesList.aspx" />
+    <Content Include="templates\css\custom-styles.css" />
+    <Content Include="UpdateParent.aspx" />
+    <Content Include="UpdateRoom.aspx" />
+    <Content Include="UpdateStudent.aspx" />
+    <Content Include="ViewAttendanceList.aspx" />
+    <Content Include="ViewClosedComplaintsList.aspx" />
+    <Content Include="ViewComplaintsList.aspx" />
+    <Content Include="ViewFeedbacksList.aspx" />
+    <Content Include="ViewFoodMenuItemsList.aspx" />
+    <Content Include="ViewHostelDetails.aspx" />
+    <Content Include="ViewNotificationsList.aspx" />
+    <Content Include="ViewParentsList.aspx" />
+    <Content Include="ViewRoomFacilitiesList.aspx" />
+    <Content Include="ViewRoomGallery.aspx" />
+    <Content Include="ViewStaffsList.aspx" />
+    <Content Include="ViewStudentsList.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="401.aspx.cs">
+      <DependentUpon>401.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="401.aspx.designer.cs">
+      <DependentUpon>401.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="500.aspx.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="500.aspx.designer.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddAttendance.aspx.cs">
+      <DependentUpon>AddAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAttendance.aspx.designer.cs">
+      <DependentUpon>AddAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddFoodMenuItem.aspx.cs">
+      <DependentUpon>AddFoodMenuItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddFoodMenuItem.aspx.designer.cs">
+      <DependentUpon>AddFoodMenuItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddHostel.aspx.cs">
+      <DependentUpon>AddHostel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddHostel.aspx.designer.cs">
+      <DependentUpon>AddHostel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminDashboard.aspx.designer.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite.Master.cs">
+      <DependentUpon>AdminSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite.Master.designer.cs">
+      <DependentUpon>AdminSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovalParentsList.aspx.cs">
+      <DependentUpon>ApprovalParentsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalParentsList.aspx.designer.cs">
+      <DependentUpon>ApprovalParentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovalStudentsList.aspx.cs">
+      <DependentUpon>ApprovalStudentsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalStudentsList.aspx.designer.cs">
+      <DependentUpon>ApprovalStudentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AuthSite.Master.cs">
+      <DependentUpon>AuthSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AuthSite.Master.designer.cs">
+      <DependentUpon>AuthSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ComplaintRegister.aspx.cs">
+      <DependentUpon>ComplaintRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComplaintRegister.aspx.designer.cs">
+      <DependentUpon>ComplaintRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComplaintReply.aspx.cs">
+      <DependentUpon>ComplaintReply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComplaintReply.aspx.designer.cs">
+      <DependentUpon>ComplaintReply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FeedbackSuccess.aspx.cs">
+      <DependentUpon>FeedbackSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FeedbackSuccess.aspx.designer.cs">
+      <DependentUpon>FeedbackSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HostelStaffRegister.aspx.cs">
+      <DependentUpon>HostelStaffRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HostelStaffRegister.aspx.designer.cs">
+      <DependentUpon>HostelStaffRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParentDashboard.aspx.cs">
+      <DependentUpon>ParentDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParentDashboard.aspx.designer.cs">
+      <DependentUpon>ParentDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParentRegister.aspx.cs">
+      <DependentUpon>ParentRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParentRegister.aspx.designer.cs">
+      <DependentUpon>ParentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParentSite.Master.cs">
+      <DependentUpon>ParentSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParentSite.Master.designer.cs">
+      <DependentUpon>ParentSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Password.aspx.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Password.aspx.designer.cs">
+      <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSuccess.aspx.cs">
+      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSuccess.aspx.designer.cs">
+      <DependentUpon>PaymentSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvideFeedback.aspx.cs">
+      <DependentUpon>ProvideFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProvideFeedback.aspx.designer.cs">
+      <DependentUpon>ProvideFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_ViewAttendanceList.aspx.cs">
+      <DependentUpon>P_ViewAttendanceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ViewAttendanceList.aspx.designer.cs">
+      <DependentUpon>P_ViewAttendanceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_ViewProfile.aspx.cs">
+      <DependentUpon>P_ViewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ViewProfile.aspx.designer.cs">
+      <DependentUpon>P_ViewProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomDetails.aspx.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomDetails.aspx.designer.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomPhotoUpload.aspx.cs">
+      <DependentUpon>RoomPhotoUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomPhotoUpload.aspx.designer.cs">
+      <DependentUpon>RoomPhotoUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomRegister.aspx.cs">
+      <DependentUpon>RoomRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomRegister.aspx.designer.cs">
+      <DependentUpon>RoomRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendNotifications.aspx.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendNotifications.aspx.designer.cs">
+      <DependentUpon>SendNotifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentDashboard.aspx.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentDashboard.aspx.designer.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentRegister.aspx.cs">
+      <DependentUpon>StudentRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentRegister.aspx.designer.cs">
+      <DependentUpon>StudentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentSite.Master.cs">
+      <DependentUpon>StudentSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentSite.Master.designer.cs">
+      <DependentUpon>StudentSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="S_CancelMyBooking.aspx.cs">
+      <DependentUpon>S_CancelMyBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_CancelMyBooking.aspx.designer.cs">
+      <DependentUpon>S_CancelMyBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ComplaintStatus.aspx.cs">
+      <DependentUpon>S_ComplaintStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ComplaintStatus.aspx.designer.cs">
+      <DependentUpon>S_ComplaintStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_MakePayment.aspx.cs">
+      <DependentUpon>S_MakePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_MakePayment.aspx.designer.cs">
+      <DependentUpon>S_MakePayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_RoomBooking.aspx.cs">
+      <DependentUpon>S_RoomBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_RoomBooking.aspx.designer.cs">
+      <DependentUpon>S_RoomBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_RoomDetails.aspx.cs">
+      <DependentUpon>S_RoomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_RoomDetails.aspx.designer.cs">
+      <DependentUpon>S_RoomDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_UpdateProfile.aspx.cs">
+      <DependentUpon>S_UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_UpdateProfile.aspx.designer.cs">
+      <DependentUpon>S_UpdateProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewAttendanceList.aspx.cs">
+      <DependentUpon>S_ViewAttendanceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewAttendanceList.aspx.designer.cs">
+      <DependentUpon>S_ViewAttendanceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewAvailableRoomsList.aspx.cs">
+      <DependentUpon>S_ViewAvailableRoomsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewAvailableRoomsList.aspx.designer.cs">
+      <DependentUpon>S_ViewAvailableRoomsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewFoodMenuItemsList.aspx.cs">
+      <DependentUpon>S_ViewFoodMenuItemsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewFoodMenuItemsList.aspx.designer.cs">
+      <DependentUpon>S_ViewFoodMenuItemsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewHostelDetails.aspx.cs">
+      <DependentUpon>S_ViewHostelDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewHostelDetails.aspx.designer.cs">
+      <DependentUpon>S_ViewHostelDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewMyBooking.aspx.cs">
+      <DependentUpon>S_ViewMyBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewMyBooking.aspx.designer.cs">
+      <DependentUpon>S_ViewMyBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewNotificationsList.aspx.cs">
+      <DependentUpon>S_ViewNotificationsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewNotificationsList.aspx.designer.cs">
+      <DependentUpon>S_ViewNotificationsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewPaymentHistory.aspx.cs">
+      <DependentUpon>S_ViewPaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewPaymentHistory.aspx.designer.cs">
+      <DependentUpon>S_ViewPaymentHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewProfile.aspx.cs">
+      <DependentUpon>S_ViewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewProfile.aspx.designer.cs">
+      <DependentUpon>S_ViewProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ViewRoomFacilitiesList.aspx.cs">
+      <DependentUpon>S_ViewRoomFacilitiesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ViewRoomFacilitiesList.aspx.designer.cs">
+      <DependentUpon>S_ViewRoomFacilitiesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateParent.aspx.cs">
+      <DependentUpon>UpdateParent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateParent.aspx.designer.cs">
+      <DependentUpon>UpdateParent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateRoom.aspx.cs">
+      <DependentUpon>UpdateRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateRoom.aspx.designer.cs">
+      <DependentUpon>UpdateRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateStudent.aspx.cs">
+      <DependentUpon>UpdateStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateStudent.aspx.designer.cs">
+      <DependentUpon>UpdateStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAttendanceList.aspx.cs">
+      <DependentUpon>ViewAttendanceList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewAttendanceList.aspx.designer.cs">
+      <DependentUpon>ViewAttendanceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewClosedComplaintsList.aspx.cs">
+      <DependentUpon>ViewClosedComplaintsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewClosedComplaintsList.aspx.designer.cs">
+      <DependentUpon>ViewClosedComplaintsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewComplaintsList.aspx.cs">
+      <DependentUpon>ViewComplaintsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewComplaintsList.aspx.designer.cs">
+      <DependentUpon>ViewComplaintsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFeedbacksList.aspx.cs">
+      <DependentUpon>ViewFeedbacksList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewFeedbacksList.aspx.designer.cs">
+      <DependentUpon>ViewFeedbacksList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewFoodMenuItemsList.aspx.cs">
+      <DependentUpon>ViewFoodMenuItemsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewFoodMenuItemsList.aspx.designer.cs">
+      <DependentUpon>ViewFoodMenuItemsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewHostelDetails.aspx.cs">
+      <DependentUpon>ViewHostelDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewHostelDetails.aspx.designer.cs">
+      <DependentUpon>ViewHostelDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNotificationsList.aspx.cs">
+      <DependentUpon>ViewNotificationsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewNotificationsList.aspx.designer.cs">
+      <DependentUpon>ViewNotificationsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewParentsList.aspx.cs">
+      <DependentUpon>ViewParentsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewParentsList.aspx.designer.cs">
+      <DependentUpon>ViewParentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRoomFacilitiesList.aspx.cs">
+      <DependentUpon>ViewRoomFacilitiesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRoomFacilitiesList.aspx.designer.cs">
+      <DependentUpon>ViewRoomFacilitiesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRoomGallery.aspx.cs">
+      <DependentUpon>ViewRoomGallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRoomGallery.aspx.designer.cs">
+      <DependentUpon>ViewRoomGallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStaffsList.aspx.cs">
+      <DependentUpon>ViewStaffsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewStaffsList.aspx.designer.cs">
+      <DependentUpon>ViewStaffsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStudentsList.aspx.cs">
+      <DependentUpon>ViewStudentsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewStudentsList.aspx.designer.cs">
+      <DependentUpon>ViewStudentsList.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdminSite.Master" />
+    <Content Include="AuthSite.Master" />
+    <None Include="packages.config" />
+    <Content Include="StudentSite.Master" />
+    <Content Include="ParentSite.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RoomPhotos\" />
+    <Folder Include="templates\js\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61822</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44354/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

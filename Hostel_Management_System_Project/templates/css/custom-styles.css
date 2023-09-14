@@ -1,0 +1,137 @@
+﻿.status-approved {
+    color: limegreen !important;
+}
+
+.status-rejected {
+    color: red !important;
+}
+
+.status-pending {
+    color: orange !important;
+}
+
+.status-inactive {
+    color: grey !important;
+}
+
+.bold-status {
+    font-weight: bold;
+}
+
+.count-label {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00CCFF;
+    padding: 5px;
+}
+
+
+.bg-gold {
+    background: #755a10;
+}
+
+.bg-custom-grey {
+    background: #181818;
+}
+
+.status-vacant {
+    color: limegreen !important;
+}
+
+.status-occupied {
+    color: red !important;
+}
+
+.status-maintenance {
+    color: orange !important;
+}
+
+.hostel-photo {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hostel-photo img {
+    border-radius: 30px;
+    outline: 3px groove white;
+    border: 2px groove #7da77a;
+}
+
+.hostel-photo:nth-child(3n+1) {
+    clear: left;
+}
+
+.dropdown-icon {
+    background-image: url('templates/assets/icons/chevron-down-solid.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 30px;
+}
+
+.filter-icon {
+    background-image: url('templates/assets/icons/filter-solid.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    padding-right: 30px;
+}
+
+
+.room-image {
+    border-radius: 30px;
+    outline: 3px groove white;
+    border: 2px groove #7da77a;
+    margin-bottom: 10px;
+}
+
+.room-info {
+    margin-top: 10px;
+}
+
+.img-room {
+    border-radius: 50px;
+    outline: 3px groove white;
+    border: 2px groove #7da77a;
+}
+
+/* Style for the success container */
+.success-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the success message */
+.success-message {
+    color: #4CAF50; /* Green color for success */
+    font-size: 28px;
+    animation: slide-up 2s ease;
+}
+
+/* Style for the thanks message */
+.thanks-message {
+    font-size: 34px;
+    animation: slide-up 2s ease 1s; /* Delay the thanks message animation */
+}
+
+/* Keyframes for sliding up animation */
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

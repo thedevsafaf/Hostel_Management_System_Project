@@ -1,0 +1,507 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminSite.master.cs" Inherits="Hostel_Management_System_Project.AdminSite" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <%-- Meta Tags --%>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <%-- Title Content PlaceHolder--%>
+    <title><asp:ContentPlaceHolder ID="Title" runat="server" /></title>
+     <%-- Title Content PlaceHolder--%>
+
+    <%-- Load CSS Styles --%>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="templates/css/styles.css" />
+    <link rel="stylesheet" href="templates/css/custom-styles.css" />
+
+    <style>
+        .status-approved {
+            color: limegreen !important;
+        }
+
+        .status-rejected {
+            color: red !important;
+        }
+
+        .status-pending {
+            color: orange !important;
+        }
+
+        .status-inactive {
+            color: grey !important;
+        }
+
+        .bold-status {
+            font-weight: bold;
+        }
+
+        .count-label {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00CCFF;
+            padding: 5px;
+        }
+
+
+        .bg-gold {
+            background: #755a10;
+        }
+
+        .bg-custom-grey {
+            background: #181818;
+        }
+
+        .status-vacant {
+            color: limegreen !important;
+        }
+
+        .status-occupied {
+            color: red !important;
+        }
+
+        .status-maintenance {
+            color: orange !important;
+        }
+
+        .hostel-photo {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hostel-photo img {
+            border-radius: 30px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+        }
+
+        .hostel-photo:nth-child(3n+1) {
+            clear: left;
+        }
+
+        .dropdown-icon {
+            background-image: url('templates/assets/icons/chevron-down-solid.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            padding-right: 30px;
+        }
+
+        .filter-icon {
+            background-image: url('templates/assets/icons/filter-solid.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 30px;
+        }
+
+
+        .room-image {
+            border-radius: 30px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+            margin-bottom: 10px;
+        }
+
+        .room-info {
+            margin-top: 10px;
+        }
+
+        .img-room {
+            border-radius: 50px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+        }
+
+        /* Style for the success container */
+        .success-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style for the success message */
+        .success-message {
+            color: #4CAF50; /* Green color for success */
+            font-size: 28px;
+            animation: slide-up 2s ease;
+        }
+
+        /* Style for the thanks message */
+        .thanks-message {
+            font-size: 34px;
+            animation: slide-up 2s ease 1s; /* Delay the thanks message animation */
+        }
+
+        /* Keyframes for sliding up animation */
+        @keyframes slide-up {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <%-- jQuery, FontAwesome icons --%>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <%-- Sweet Alert --%>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+
+    <%-- Custom Internal Styles --%>
+    <style>
+        .status-approved {
+            color: limegreen !important;
+        }
+
+        .status-rejected {
+            color: red !important;
+        }
+
+        .status-pending {
+            color: orange !important;
+        }
+
+        .status-inactive {
+            color: grey !important;
+        }
+
+        .bold-status {
+            font-weight: bold;
+        }
+
+        .count-label {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00CCFF;
+            padding: 5px;
+        }
+
+
+        .bg-gold {
+            background: #755a10;
+        }
+
+        .bg-custom-grey {
+            background: #181818;
+        }
+
+        .status-vacant {
+            color: limegreen !important;
+        }
+
+        .status-occupied {
+            color: red !important;
+        }
+
+        .status-maintenance {
+            color: orange !important;
+        }
+
+        .hostel-photo {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hostel-photo img {
+            border-radius: 30px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+        }
+
+        .hostel-photo:nth-child(3n+1) {
+            clear: left;
+        }
+
+        .dropdown-icon {
+            background-image: url('templates/assets/icons/chevron-down-solid.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            padding-right: 30px;
+        }
+
+        .filter-icon {
+            background-image: url('templates/assets/icons/filter-solid.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 30px;
+        }
+
+
+        .room-image {
+            border-radius: 30px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+            margin-bottom: 10px;
+        }
+
+        .room-info {
+            margin-top: 10px;
+        }
+
+        .img-room {
+            border-radius: 50px;
+            outline: 3px groove white;
+            border: 2px groove #7da77a;
+        }
+
+
+    </style>
+
+</head>
+<body class="sb-nav-fixed">
+    <form id="form1" runat="server">
+
+        <%-- Common Content --%>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="AdminDashboard.asp">Zafe HMS</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">MENU</div>
+                            <a class="nav-link" href="AdminDashboard.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard Overview
+                            </a>
+
+                            <%-- Manage HOSTEL --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Manage Hostel
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewHostelDetails.aspx">Hostel Details</a>
+                                    <a class="nav-link" href="RoomRegister.aspx">Add Room</a>
+                                    <a class="nav-link" href="RoomPhotoUpload.aspx">Upload Room Photo</a>
+                                    <a class="nav-link" href="ViewRoomFacilitiesList.aspx">Room Facilities</a>
+                                    <a class="nav-link" href="ViewRoomGallery.aspx">Room Photos</a>
+                                </nav>
+                            </div>
+
+                              <%-- Manage STUDENTS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStudents" aria-expanded="false" aria-controls="collapseStudents">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                                Manage Students
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseStudents" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewStudentsList.aspx">Student List</a>
+                                    <a class="nav-link" href="ApprovalStudentsList.aspx">Approve/Reject</a>
+                                    <a class="nav-link" href="AddAttendance.aspx">Add Attendance</a>
+                                    <a class="nav-link" href="ViewAttendanceList.aspx">Students Attendance</a>
+                                </nav>
+                            </div>
+
+                            <%-- Manage PARENTS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseParents" aria-expanded="false" aria-controls="collapseParents">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Manage Parents
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseParents" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewParentsList.aspx">Parent List</a>
+                                    <a class="nav-link" href="ApprovalParentsList.aspx">Approve/Reject</a>
+                                </nav>
+                            </div>
+
+                            <%-- FOOD MENU --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFoodMenu" aria-expanded="false" aria-controls="collapseFoodMenu">
+                                <div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
+                                Food Menu
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseFoodMenu" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewFoodMenuItemsList.aspx">View Daily Menu</a>
+                                    <a class="nav-link" href="AddFoodMenuItem.aspx">Add New Item</a>
+                                </nav>
+                            </div>
+
+                            <%-- BOOKINGS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBookings" aria-expanded="false" aria-controls="collapseBookings">
+                                <div class="sb-nav-link-icon"><i class="fas fa-calendar"></i></div>
+                                Bookings
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseBookings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">View Bookings</a>
+                                    <a class="nav-link" href="#">Manage Bookings</a>
+                                </nav>
+                            </div>
+
+                            <%-- PAYMENTS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePayments" aria-expanded="false" aria-controls="collapsePayments">
+                                <div class="sb-nav-link-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                Payments
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePayments" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">Payment History</a>
+                                    <a class="nav-link" href="#">Update Payments</a>
+                                </nav>
+                            </div>
+
+                            <%-- COMPLAINTS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseComplaints" aria-expanded="false" aria-controls="collapseComplaints">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bullhorn"></i></div>
+                                Complaints
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseComplaints" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewComplaintsList.aspx">View Complaints</a>
+                                    <a class="nav-link" href="ViewClosedComplaintsList.aspx">Closed Complaints</a>
+                                </nav>
+                            </div>
+
+                            <%-- NOTIFICATIONS --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bell"></i></div>
+                                Notifications
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseNotifications" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="SendNotifications.aspx">Send Notifications</a>
+                                    <a class="nav-link" href="ViewNotificationsList.aspx">View Notifications</a>
+                                </nav>
+                            </div>
+
+                            <%-- STAFF --%>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStaff" aria-expanded="false" aria-controls="collapseStaff">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Staff
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseStaff" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="ViewStaffsList.aspx">Staff List</a>
+                                    <a class="nav-link" href="HostelStaffRegister.aspx">Add New Staff</a>
+                                </nav>
+                            </div>
+
+                             <%-- FEEDBACKS --%>
+                            <a class="nav-link" href="ViewFeedbacksList.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
+                                View Feedbacks
+                            </a>
+
+
+                            <%-- LOGOUT --%>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                    <!-- SideNavbar Login User Display -->
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        <asp:Label ID="lbl_LoggedInUser" runat="server" Text=""></asp:Label>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content" style="background-image: url('./templates/assets/img/auth-bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position:center center">
+
+                <%-- Main Content PlaceHolder --%>
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <%-- Main Content PlaceHolder --%>
+
+               <!-- Footer -->
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Zafe HMS - 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+        
+
+    </form>
+
+    <%-- Load JS References --%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="templates/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="templates/assets/demo/chart-area-demo.js"></script>
+    <script src="templates/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="templates/js/datatables-simple-demo.js"></script>
+
+
+    <%-- Common Content --%>
+
+</body>
+</html>
