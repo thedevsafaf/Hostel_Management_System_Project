@@ -53,7 +53,7 @@
                                     <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td>
-                                        <asp:Button ID="btn_Refund" runat="server" CssClass="btn btn-success" Text="REFUND"  CommandArgument='<%# Eval("payment_id") %>'  />
+                                        <asp:Button ID="btn_Refund" runat="server" CssClass="btn btn-success" Text="REFUND"  CommandArgument='<%# Eval("payment_id") %>' OnClick="btn_Refund_Click"  />
                                     </td>
                                 </tr>
                             </ItemTemplate>

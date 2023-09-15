@@ -124,6 +124,7 @@
     <Content Include="ViewHostelDetails.aspx" />
     <Content Include="ViewNotificationsList.aspx" />
     <Content Include="ViewParentsList.aspx" />
+    <Content Include="ViewRefundNotifications.aspx" />
     <Content Include="ViewRoomFacilitiesList.aspx" />
     <Content Include="ViewRoomGallery.aspx" />
     <Content Include="ViewStaffsList.aspx" />
@@ -551,6 +552,13 @@
     </Compile>
     <Compile Include="ViewParentsList.aspx.designer.cs">
       <DependentUpon>ViewParentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRefundNotifications.aspx.cs">
+      <DependentUpon>ViewRefundNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewRefundNotifications.aspx.designer.cs">
+      <DependentUpon>ViewRefundNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewRoomFacilitiesList.aspx.cs">
       <DependentUpon>ViewRoomFacilitiesList.aspx</DependentUpon>

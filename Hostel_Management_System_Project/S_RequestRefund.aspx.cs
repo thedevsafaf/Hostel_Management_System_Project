@@ -48,5 +48,66 @@ namespace Hostel_Management_System_Project
 
             }
         }
+
+        protected void btn_Refund_Click(object sender, EventArgs e)
+        {
+            int paymentId = Convert.ToInt32(((Button)sender).CommandArgument);
+            string studentName;
+            decimal paymentAmount;
+            DateTime paymentDate, bookingDate;
+            string roomNo;
+
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_for_refund_notifications", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@payment_Id", paymentId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    studentName = reader["name"].ToString();
+                    paymentAmount = Convert.ToDecimal(reader["payment_amount"]);
+                    paymentDate = Convert.ToDateTime(reader["payment_date"]);
+                    bookingDate = Convert.ToDateTime(reader["booking_date"]);
+                    roomNo = reader["room_no"].ToString();
+                }
+                else
+                {
+                    //display an error message to Handle the case where no data is found for the payment ID
+                    Response.Write("No such payment ID ");
+                    return;
+                }
+
+                // Create the notification message
+                string message = $"Refund requested for\nPayment ID: {paymentId}\nStudent Name: {studentName}\nPayment Amount: {paymentAmount:C}\nPayment Date: {paymentDate:dd-MM-yyyy}\nBooking Date: {bookingDate:dd-MM-yyyy}\nRoom Number: {roomNo}";
+                
+
+
+                // Insert the notification message into the notification_table (assuming you have a method for this)
+                InsertNotificationMessage(studentName, message);
+
+                // Redirect or display a confirmation message
+                Response.Write("RefundConfirmation.aspx");
+            }
+        }
+
+        private void InsertNotificationMessage(string studentName, string message)
+        {
+            // to insert the notification message into the notification_table
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+                string insertQuery = "INSERT INTO notification_table (student_id, message, notification_type, created_at) " +
+                                     "VALUES (@studentId, @message, @notification_type, GETDATE())";
+                SqlCommand cmd = new SqlCommand(insertQuery, con);
+                int studentId = int.Parse(Session["student_id"].ToString());
+                cmd.Parameters.AddWithValue("@studentId", studentId);
+                cmd.Parameters.AddWithValue("@message", message);
+                cmd.Parameters.AddWithValue("@notification_type", "Refund");
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

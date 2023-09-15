@@ -117,13 +117,14 @@ namespace Hostel_Management_System_Project
 
         private void InsertNotification(int studentId, string message)
         {
-            string query = "INSERT INTO notification_table (student_id, message, created_at) VALUES (@student_id, @message, GETDATE())";
+            string query = "INSERT INTO notification_table (student_id, message, notification_type, created_at) VALUES (@student_id, @message, @notification_type, GETDATE())";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@student_id", studentId);
                     cmd.Parameters.AddWithValue("@message", message);
+                    cmd.Parameters.AddWithValue("@notification_type", "General");
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
