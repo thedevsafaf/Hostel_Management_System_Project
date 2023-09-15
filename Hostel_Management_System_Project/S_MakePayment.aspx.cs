@@ -57,7 +57,7 @@ namespace Hostel_Management_System_Project
                 DateTime paymentDate = DateTime.Parse(tb_PaymentDate.Text);
 
                 // Step 1: Insert payment record into the payment_table
-                int paymentId = InsertPaymentRecord(studentId, paymentAmount, paymentDate);
+                int paymentId = InsertPaymentRecord(studentId, paymentAmount, paymentDate, "Paid");
 
                 // Step 2: Update booking status to "Confirmed"
                 UpdateBookingStatus(selectedBookingId, "Confirmed", paymentId);
@@ -81,13 +81,14 @@ namespace Hostel_Management_System_Project
         }
 
         //Insert Record to Payment Table
-        private int InsertPaymentRecord(int studentId, decimal paymentAmount, DateTime paymentDate)
+        private int InsertPaymentRecord(int studentId, decimal paymentAmount, DateTime paymentDate, string paymentStatus)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO payment_table (student_id, amount, payment_date, created_at) VALUES (@studentId, @amount, @paymentDate, GETDATE()); SELECT SCOPE_IDENTITY();", con))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO payment_table (student_id, amount, payment_date, payment_status, created_at) VALUES (@studentId, @amount, @paymentDate, @paymentStatus, GETDATE()); SELECT SCOPE_IDENTITY();", con))
             {
                 cmd.Parameters.AddWithValue("@studentId", studentId);
                 cmd.Parameters.AddWithValue("@amount", paymentAmount);
                 cmd.Parameters.AddWithValue("@paymentDate", paymentDate);
+                cmd.Parameters.AddWithValue("@paymentStatus", paymentStatus);
 
                 // ExecuteScalar to get the generated payment_id
                 int paymentId = Convert.ToInt32(cmd.ExecuteScalar());

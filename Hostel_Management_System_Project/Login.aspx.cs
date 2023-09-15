@@ -14,9 +14,7 @@ namespace Hostel_Management_System_Project
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            //to get a fresh page by removing the cache on browser back button
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetNoStore();
+            if (!IsPostBack) { }
         }
 
         protected void btn_Login_Click(object sender, EventArgs e)

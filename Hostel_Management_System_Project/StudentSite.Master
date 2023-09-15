@@ -262,6 +262,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="S_ViewPaymentHistory.aspx">Payment History</a>
                                     <a class="nav-link" href="S_MakePayment.aspx">Make a Payment</a>
+                                    <a class="nav-link" href="S_RequestRefund.aspx">Request Refund</a>
                                 </nav>
                             </div>
 

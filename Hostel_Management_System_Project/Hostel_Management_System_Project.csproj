@@ -97,6 +97,7 @@
     <Content Include="S_CancelMyBooking.aspx" />
     <Content Include="S_ComplaintStatus.aspx" />
     <Content Include="S_MakePayment.aspx" />
+    <Content Include="S_RequestRefund.aspx" />
     <Content Include="S_RoomBooking.aspx" />
     <Content Include="S_RoomDetails.aspx" />
     <Content Include="S_UpdateProfile.aspx" />
@@ -114,8 +115,10 @@
     <Content Include="UpdateRoom.aspx" />
     <Content Include="UpdateStudent.aspx" />
     <Content Include="ViewAttendanceList.aspx" />
+    <Content Include="ViewBookingsList.aspx" />
     <Content Include="ViewClosedComplaintsList.aspx" />
     <Content Include="ViewComplaintsList.aspx" />
+    <Content Include="ViewExpiredBookingsList.aspx" />
     <Content Include="ViewFeedbacksList.aspx" />
     <Content Include="ViewFoodMenuItemsList.aspx" />
     <Content Include="ViewHostelDetails.aspx" />
@@ -367,6 +370,13 @@
     <Compile Include="S_MakePayment.aspx.designer.cs">
       <DependentUpon>S_MakePayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="S_RequestRefund.aspx.cs">
+      <DependentUpon>S_RequestRefund.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_RequestRefund.aspx.designer.cs">
+      <DependentUpon>S_RequestRefund.aspx</DependentUpon>
+    </Compile>
     <Compile Include="S_RoomBooking.aspx.cs">
       <DependentUpon>S_RoomBooking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -479,6 +489,13 @@
     <Compile Include="ViewAttendanceList.aspx.designer.cs">
       <DependentUpon>ViewAttendanceList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewBookingsList.aspx.cs">
+      <DependentUpon>ViewBookingsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewBookingsList.aspx.designer.cs">
+      <DependentUpon>ViewBookingsList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewClosedComplaintsList.aspx.cs">
       <DependentUpon>ViewClosedComplaintsList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -492,6 +509,13 @@
     </Compile>
     <Compile Include="ViewComplaintsList.aspx.designer.cs">
       <DependentUpon>ViewComplaintsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewExpiredBookingsList.aspx.cs">
+      <DependentUpon>ViewExpiredBookingsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewExpiredBookingsList.aspx.designer.cs">
+      <DependentUpon>ViewExpiredBookingsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewFeedbacksList.aspx.cs">
       <DependentUpon>ViewFeedbacksList.aspx</DependentUpon>

@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <asp:TextBox ID="tb_Amount" runat="server" CssClass="form-control" placeholder="Enter amount"></asp:TextBox>
+                                                <asp:TextBox ID="tb_Amount" runat="server" CssClass="form-control" placeholder="Enter amount" Text="5000" Enabled="false"></asp:TextBox>
                                                 <label for="tb_Amount">Payment Amount</label>
                                                 <asp:RequiredFieldValidator ID="rfv_Amount" runat="server" ControlToValidate="tb_Amount" ErrorMessage="Required field" ForeColor="Red"><b>*</b></asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ID="rev_Amount" runat="server" ControlToValidate="tb_Amount" ErrorMessage="Invalid amount format" ForeColor="Red" ValidationExpression="^\d+(\.\d{1,2})?$"></asp:RegularExpressionValidator>
@@ -41,7 +41,7 @@
                                                 <asp:TextBox ID="tb_PaymentDate" runat="server" CssClass="form-control" TextMode="Date" placeholder="Select start date"></asp:TextBox>
                                                 <label for="tb_PaymentDate">
                                                     Payment Date
-                                                        <asp:RequiredFieldValidator ID="rfv_PaymentDate" runat="server" ControlToValidate="tb_PaymentDate" ErrorMessage="Required field" ForeColor="Red"><b>*</b></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="rfv_PaymentDate" runat="server" ControlToValidate="tb_PaymentDate" ErrorMessage="Required field" ForeColor="Red"><b>*</b></asp:RequiredFieldValidator>
                                                     <asp:CompareValidator ID="cv_PaymentDate" runat="server" ControlToValidate="tb_PaymentDate" Operator="DataTypeCheck" Type="Date" ErrorMessage="Invalid date format" ForeColor="Red"></asp:CompareValidator>
                                                 </label>
                                             </div>
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="ViewBookings.aspx">View My Bookings</a></div>
+                                    <div class="small"><a href="S_ViewMyBooking.aspx">View My Bookings</a></div>
                                 </div>
                             </div>
                         </div>

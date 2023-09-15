@@ -26,7 +26,7 @@ namespace Hostel_Management_System_Project
             {
                 con.Open();
                 string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id, bt.booking_date, bt.status as booking_status, rf.room_id, rf.room_no, rf.room_desc from booking_table bt full join room_facilities rf on bt.room_id = rf.room_id where bt.student_id = @student_id;", con);
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id, bt.booking_date, bt.status as booking_status, rf.room_id, rf.room_no, rf.room_desc from booking_table bt full join room_facilities rf on bt.room_id = rf.room_id where bt.student_id = @student_id and bt.status = 'Confirmed';", con);
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -51,20 +51,42 @@ namespace Hostel_Management_System_Project
 
         protected void btn_Cancel_Click(object sender, EventArgs e)
         {
-            //using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
-            //{
-            //    con.Open();
-            //    int booking_id = Convert.ToInt32((sender as Button).CommandArgument);
-            //    Session["booking_id"] = booking_id;
-            //    using (SqlCommand cmd = new SqlCommand("UPDATE booking_table SET status = @status WHERE booking_id = @bookingId", con))
-            //    {
-            //        cmd.Parameters.AddWithValue("@status", "Cancelled");
-            //        //cmd.Parameters.AddWithValue("@paymentId", paymentId);
-            //        cmd.Parameters.AddWithValue("@bookingId", booking_id);
-            //        cmd.ExecuteNonQuery();
-            //    }
-            //}
-         
+            // Get the booking_id from the clicked button's CommandArgument
+            Button btn = (Button)sender;
+            int bookingId = Convert.ToInt32(btn.CommandArgument);
+
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+                // Update booking_table status to 'Cancelled' for the specific booking_id
+                SqlCommand updateBookingCmd = new SqlCommand("UPDATE booking_table SET status = 'Cancelled' WHERE booking_id = @bookingId", con);
+                updateBookingCmd.Parameters.AddWithValue("@bookingId", bookingId);
+                updateBookingCmd.ExecuteNonQuery();
+
+                // Get the room_id associated with the cancelled booking
+                SqlCommand getRoomIdCmd = new SqlCommand("SELECT room_id FROM booking_table WHERE booking_id = @bookingId", con);
+                getRoomIdCmd.Parameters.AddWithValue("@bookingId", bookingId);
+                int roomId = Convert.ToInt32(getRoomIdCmd.ExecuteScalar());
+
+                // Update room_facilities room_status to 'Vacant' for the specific room_id
+                SqlCommand updateRoomCmd = new SqlCommand("UPDATE room_facilities SET room_status = 'Vacant' WHERE room_id = @roomId", con);
+                updateRoomCmd.Parameters.AddWithValue("@roomId", roomId);
+                updateRoomCmd.ExecuteNonQuery();
+
+                // Get the payment ID associated with the canceled booking
+                SqlCommand getPaymentIdCmd = new SqlCommand("SELECT payment_id FROM booking_table WHERE booking_id = @bookingId", con);
+                getPaymentIdCmd.Parameters.AddWithValue("@bookingId", bookingId);
+                int paymentId = Convert.ToInt32(getPaymentIdCmd.ExecuteScalar());
+
+                // Update the payment table to mark the payment as 'Cancelled' or 'Refunded' (cancelled for now)
+                SqlCommand updatePaymentCmd = new SqlCommand("UPDATE payment_table SET payment_status = 'Cancelled' WHERE payment_id = @paymentId", con);
+                updatePaymentCmd.Parameters.AddWithValue("@paymentId", paymentId);
+                updatePaymentCmd.ExecuteNonQuery();
+            }
+
+            // After the update, rebind the Repeater to show the updated data
+            PopulateMyBookingList();
+
         }
 
     }

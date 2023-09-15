@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ViewMyBooking.aspx.cs" Inherits="Hostel_Management_System_Project.S_ViewMyBooking" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true" CodeBehind="ViewBookingsList.aspx.cs" Inherits="Hostel_Management_System_Project.ViewBookingsList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS -  <%= Session["name"] %>'s Room Booking
+    Zafe HMS - Room Bookings List
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <main>
+    <main>
         <%-- Table Information --%>
 
         <div class="container-fluid px-4">
@@ -32,10 +32,10 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
+                                            <th>Student Name</th>
                                             <th>Booking Date</th>
                                             <th>Room No</th>
                                             <th>Room Description</th>
-                                            <th>Payment Status</th>
                                             <th>Booking Status</th>
                                         </tr>
                                     </thead>
@@ -44,16 +44,11 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
+                                    <td><%# Eval("st_name") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("room_no") %></td>
-                                    <td><%# Eval("room_desc").ToString().Length > 60 ? Eval("room_desc").ToString().Substring(0, 60) + "..." : Eval("room_desc") %></td>
-                                     <td>
-                                         <%# Eval("booking_status").ToString() == "Auto Cancelled" ? "Not Paid" :
-                                             Eval("booking_status").ToString() == "Cancelled" ? "Refundable" :
-                                             Eval("booking_status").ToString() == "Confirmed" ? "Paid" : "-" %>
-                                    </td>
+                                    <td><%# Eval("room_desc") %></td>
                                     <td><%# Eval("booking_status") %></td>
-                                   
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

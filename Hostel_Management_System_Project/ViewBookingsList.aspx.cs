@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,24 +9,23 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class S_ViewMyBooking : System.Web.UI.Page
+    public partial class ViewBookingsList : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 // Call a method to populate attendance list
-                PopulateMyBookingList();
+                PopulateBookingsList();
             }
         }
-        private void PopulateMyBookingList()
+        private void PopulateBookingsList()
         {
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
                 string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.student_id, bt.booking_date, bt.status as booking_status, rf.room_id, rf.room_no, rf.room_desc from booking_table bt left join room_facilities rf on bt.room_id = rf.room_id where bt.student_id = @student_id;", con);
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.student_id, st.name as st_name, st.phone_number as st_phone, bt.booking_date, bt.status as booking_status, rf.room_id as room_id, rf.room_no as room_no, rf.room_desc as room_desc from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join student_table st on st.student_id = bt.student_id;", con);
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
