@@ -18,7 +18,7 @@
                 No refunds available.
             </asp:Panel>
 
-            <%--attendance table data--%>
+            <%--refund table data--%>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
@@ -35,9 +35,10 @@
                                             <th>Payment ID</th>
                                             <th>Amount</th>
                                             <th>Booked Room No</th>
+                                            <th>Date Booked</th>
                                             <th>Booking Status</th>
-                                            <th>Booking Date</th>
-                                            <th>Payment Date</th>
+                                            <th>Date Paid</th>
+                                            <th>Payment Status</th>
                                             <th>Request Refund</th>
                                         </tr>
                                     </thead>
@@ -49,11 +50,12 @@
                                     <td><%# Eval("payment_id") %></td>
                                     <td><%# Eval("amount") %></td>
                                     <td><%# Eval("booked_room_no") %></td>
+                                    <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("booking_status") %></td>
                                     <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
+                                    <td><%# Eval("payment_status") %></td>
                                     <td>
-                                        <asp:Button ID="btn_Refund" runat="server" CssClass="btn btn-success" Text="REFUND"  CommandArgument='<%# Eval("payment_id") %>' OnClick="btn_Refund_Click"  />
+                                        <asp:Button ID="btn_Refund" runat="server" CssClass="btn btn-success" Text="REFUND"  CommandArgument='<%# Eval("payment_id") %>' OnClick="btn_Refund_Click" OnClientClick="return disableButton(this);" ToolTip="You will get your money back within 2 Bank Working Days" />
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -67,4 +69,6 @@
             </div>
         </div>
     </main>
+
+
 </asp:Content>

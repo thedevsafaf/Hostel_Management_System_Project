@@ -35,9 +35,10 @@
                                             <th>Payment ID</th>
                                             <th>Amount</th>
                                             <th>Booked Room No</th>
-                                            <th>Booking Status</th>
                                             <th>Booking Date</th>
+                                            <th>Booking Status</th>
                                             <th>Payment Date</th>
+                                            <th>Payment Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,8 +50,9 @@
                                     <td><%# Eval("amount") %></td>
                                     <td><%# Eval("booked_room_no") %></td>
                                     <td><%# Eval("booking_status") %></td>
-                                    <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
+                                    <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
+                                    <td><%# Eval("payment_status") %></td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

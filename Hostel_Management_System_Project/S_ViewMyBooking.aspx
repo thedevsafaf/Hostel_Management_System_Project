@@ -35,7 +35,7 @@
                                             <th>Booking Date</th>
                                             <th>Room No</th>
                                             <th>Room Description</th>
-                                            <th>Payment Status</th>
+                                            <th>Payment Actions</th>
                                             <th>Booking Status</th>
                                         </tr>
                                     </thead>

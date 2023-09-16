@@ -26,7 +26,7 @@ namespace Hostel_Management_System_Project
             {
                 con.Open();
                 string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id as payment_id, pt.amount as amount, pt.payment_date as payment_date from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join payment_table pt on bt.payment_id = pt.payment_id where bt.student_id = @student_id AND bt.status = 'Cancelled';", con);
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id as payment_id, pt.amount as amount, pt.payment_date as payment_date, pt.payment_status from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join payment_table pt on bt.payment_id = pt.payment_id where bt.student_id = @student_id AND pt.payment_status = 'Cancelled';", con);
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -52,6 +52,7 @@ namespace Hostel_Management_System_Project
         protected void btn_Refund_Click(object sender, EventArgs e)
         {
             int paymentId = Convert.ToInt32(((Button)sender).CommandArgument);
+            int studentId = Convert.ToInt32(Session["student_id"].ToString());
             string studentName;
             decimal paymentAmount;
             DateTime paymentDate, bookingDate;
@@ -85,14 +86,18 @@ namespace Hostel_Management_System_Project
 
 
                 // Insert the notification message into the notification_table (assuming you have a method for this)
-                InsertNotificationMessage(studentName, message);
+                InsertNotificationMessage(studentId, message);
+
+                // Update payment_status to "Processing Refund"
+                UpdatePaymentStatus(paymentId, "Processing Refund");
 
                 // Redirect or display a confirmation message
-                Response.Write("RefundConfirmation.aspx");
+                //Response.Write("RefundConfirmation.aspx"); OR
+                PopulateMyRefundPaymentsList();
             }
         }
 
-        private void InsertNotificationMessage(string studentName, string message)
+        private void InsertNotificationMessage(int studentId, string message)
         {
             // to insert the notification message into the notification_table
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
@@ -101,10 +106,22 @@ namespace Hostel_Management_System_Project
                 string insertQuery = "INSERT INTO notification_table (student_id, message, notification_type, created_at) " +
                                      "VALUES (@studentId, @message, @notification_type, GETDATE())";
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
-                int studentId = int.Parse(Session["student_id"].ToString());
                 cmd.Parameters.AddWithValue("@studentId", studentId);
                 cmd.Parameters.AddWithValue("@message", message);
                 cmd.Parameters.AddWithValue("@notification_type", "Refund");
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void UpdatePaymentStatus(int paymentId, string status)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+                string updateQuery = "UPDATE payment_table SET payment_status = @status WHERE payment_id = @paymentId";
+                SqlCommand cmd = new SqlCommand(updateQuery, con);
+                cmd.Parameters.AddWithValue("@status", status);
+                cmd.Parameters.AddWithValue("@paymentId", paymentId);
                 cmd.ExecuteNonQuery();
             }
         }

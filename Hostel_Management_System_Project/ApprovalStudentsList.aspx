@@ -47,7 +47,7 @@
                                         <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("status") %>' CssClass='<%# GetStatusCssClass(Eval("status").ToString())+ " bold-status" %>'></asp:Label>
                                     </td>
                                     <td><%# Eval("created_at") %></td>
-                                        <td>
+                                    <td>
                                         <asp:Button ID="btn_Approve" runat="server" CssClass="btn btn-success" Text="APPROVE"
                                             OnClick="btn_Approve_Click" CommandArgument='<%# Eval("student_id") %>'
                                             Enabled='<%# Eval("status").ToString() != "Approved" %>' />
