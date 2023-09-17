@@ -44,7 +44,7 @@
                                                     <asp:DropDownList ID="ddl_RoomStatus" runat="server" CssClass="form-control dropdown-icon">
                                                         <asp:ListItem Text="Vacant" Value="Vacant"></asp:ListItem>
                                                         <asp:ListItem Text="Occupied" Value="Occupied"></asp:ListItem>
-                                                        <asp:ListItem Text="Under Maintenance" Value="Under Maintenance"></asp:ListItem>
+                                                        <%--<asp:ListItem Text="Under Maintenance" Value="Under Maintenance"></asp:ListItem>--%>
                                                     </asp:DropDownList>
                                                     <label for="ddl_RoomStatus">Room Status</label>
                                                 </div>

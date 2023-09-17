@@ -76,6 +76,7 @@
     <Content Include="AdminDashboard.aspx" />
     <Content Include="ApprovalParentsList.aspx" />
     <Content Include="ApprovalStudentsList.aspx" />
+    <Content Include="CancelBooking.aspx" />
     <Content Include="ComplaintRegister.aspx" />
     <Content Include="ComplaintReply.aspx" />
     <Content Include="FeedbackSuccess.aspx" />
@@ -124,6 +125,7 @@
     <Content Include="ViewHostelDetails.aspx" />
     <Content Include="ViewNotificationsList.aspx" />
     <Content Include="ViewParentsList.aspx" />
+    <Content Include="VIewPaymentHistory.aspx" />
     <Content Include="ViewRefundNotifications.aspx" />
     <Content Include="ViewRoomFacilitiesList.aspx" />
     <Content Include="ViewRoomGallery.aspx" />
@@ -208,6 +210,13 @@
     </Compile>
     <Compile Include="AuthSite.Master.designer.cs">
       <DependentUpon>AuthSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="CancelBooking.aspx.cs">
+      <DependentUpon>CancelBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelBooking.aspx.designer.cs">
+      <DependentUpon>CancelBooking.aspx</DependentUpon>
     </Compile>
     <Compile Include="ComplaintRegister.aspx.cs">
       <DependentUpon>ComplaintRegister.aspx</DependentUpon>
@@ -552,6 +561,13 @@
     </Compile>
     <Compile Include="ViewParentsList.aspx.designer.cs">
       <DependentUpon>ViewParentsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VIewPaymentHistory.aspx.cs">
+      <DependentUpon>VIewPaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VIewPaymentHistory.aspx.designer.cs">
+      <DependentUpon>VIewPaymentHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewRefundNotifications.aspx.cs">
       <DependentUpon>ViewRefundNotifications.aspx</DependentUpon>

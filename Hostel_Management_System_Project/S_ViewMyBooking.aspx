@@ -49,7 +49,7 @@
                                     <td><%# Eval("room_desc").ToString().Length > 60 ? Eval("room_desc").ToString().Substring(0, 60) + "..." : Eval("room_desc") %></td>
                                      <td>
                                          <%# Eval("booking_status").ToString() == "Auto Cancelled" ? "Not Paid" :
-                                             Eval("booking_status").ToString() == "Cancelled" ? "Refundable" :
+                                             Eval("booking_status").ToString() == "Cancelled" || Eval("booking_status").ToString() == "Cancelled by Admin" ? "Refundable" :
                                              Eval("booking_status").ToString() == "Confirmed" ? "Paid" : "-" %>
                                     </td>
                                     <td><%# Eval("booking_status") %></td>

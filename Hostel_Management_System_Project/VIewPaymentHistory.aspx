@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ViewPaymentHistory.aspx.cs" Inherits="Hostel_Management_System_Project.S_ViewPaymentHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true" CodeBehind="VIewPaymentHistory.aspx.cs" Inherits="Hostel_Management_System_Project.VIewPaymentHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS -  <%= Session["name"] %>'s Payment History
+    Zafe HMS - Payment History
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <main>
@@ -10,7 +10,7 @@
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Admin Dashboard</li>
             </ol>
 
              <%-- no data found error msg alert --%>
@@ -18,11 +18,11 @@
                 No result found.
             </asp:Panel>
 
-            <%--attendance table data--%>
+            <%--payment table data--%>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Student <%= Session["name"] %>'s Payment History
+                    Payment History
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">

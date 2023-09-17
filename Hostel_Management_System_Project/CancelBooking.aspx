@@ -1,6 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ViewPaymentHistory.aspx.cs" Inherits="Hostel_Management_System_Project.S_ViewPaymentHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminSite.Master" AutoEventWireup="true" CodeBehind="CancelBooking.aspx.cs" Inherits="Hostel_Management_System_Project.CancelBooking" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS -  <%= Session["name"] %>'s Payment History
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <main>
@@ -10,7 +9,7 @@
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Admin Dashboard</li>
             </ol>
 
              <%-- no data found error msg alert --%>
@@ -18,27 +17,26 @@
                 No result found.
             </asp:Panel>
 
-            <%--attendance table data--%>
+            <%--confirmed booking table data--%>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Student <%= Session["name"] %>'s Payment History
+                    Cancel Room Booking
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
-                        <asp:Repeater ID="PaymentRepeater" runat="server">
+                        <asp:Repeater ID="BookingRepeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Payment ID</th>
-                                            <th>Amount</th>
-                                            <th>Booked Room No</th>
+                                            <th>Booking ID</th>
                                             <th>Booking Date</th>
+                                            <th>Room No</th>
+                                            <th>Room Description</th>
                                             <th>Booking Status</th>
-                                            <th>Payment Date</th>
-                                            <th>Payment Status</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,13 +44,14 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
-                                    <td><%# Eval("payment_id") %></td>
-                                    <td><%# Eval("amount") %></td>
-                                    <td><%# Eval("booked_room_no") %></td>
+                                    <td><%# Eval("booking_id") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
+                                    <td><%# Eval("room_no") %></td>
+                                    <td><%# Eval("room_desc") %></td>
                                     <td><%# Eval("booking_status") %></td>
-                                    <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("payment_status") %></td>
+                                    <td>
+                                        <asp:Button ID="btn_Cancel" runat="server" CssClass="btn btn-danger" Text="CANCEL"  CommandArgument='<%# Eval("booking_id") %>' OnClick="btn_Cancel_Click" />
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

@@ -63,7 +63,12 @@ namespace Hostel_Management_System_Project
             {
                 // Handle the case when the profile is not found
                 // For example, you can display an error message or redirect to an error page.
-                Response.Redirect("404.aspx");
+                //Response.Redirect("404.aspx");
+
+                // Populate student's parent details on the page
+                lbl_ParentName.Text = "NO DATA";
+                lbl_ParentEmail.Text = "NO DATA";
+                lbl_ParentPhone.Text = "NO DATA";
             }
         }
 
