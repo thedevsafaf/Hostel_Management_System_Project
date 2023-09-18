@@ -77,7 +77,7 @@
     <Content Include="ApprovalParentsList.aspx" />
     <Content Include="ApprovalStudentsList.aspx" />
     <Content Include="CancelBooking.aspx" />
-    <Content Include="S_ComplaintRegister.aspx" />
+    <Content Include="P_ComplaintRegister.aspx" />
     <Content Include="ComplaintReply.aspx" />
     <Content Include="FeedbackSuccess.aspx" />
     <Content Include="HostelStaffRegister.aspx" />
@@ -87,6 +87,7 @@
     <Content Include="Password.aspx" />
     <Content Include="PaymentSuccess.aspx" />
     <Content Include="ProvideFeedback.aspx" />
+    <Content Include="P_ComplaintStatus.aspx" />
     <Content Include="P_ViewAttendanceList.aspx" />
     <Content Include="P_ViewChildComplaintsList.aspx" />
     <Content Include="P_ViewChildNotificationsList.aspx" />
@@ -103,6 +104,7 @@
     <Content Include="StudentDashboard.aspx" />
     <Content Include="StudentRegister.aspx" />
     <Content Include="S_CancelMyBooking.aspx" />
+    <Content Include="S_ComplaintRegister.aspx" />
     <Content Include="S_ComplaintStatus.aspx" />
     <Content Include="S_MakePayment.aspx" />
     <Content Include="S_RequestRefund.aspx" />
@@ -225,12 +227,12 @@
     <Compile Include="CancelBooking.aspx.designer.cs">
       <DependentUpon>CancelBooking.aspx</DependentUpon>
     </Compile>
-    <Compile Include="S_ComplaintRegister.aspx.cs">
-      <DependentUpon>S_ComplaintRegister.aspx</DependentUpon>
+    <Compile Include="P_ComplaintRegister.aspx.cs">
+      <DependentUpon>P_ComplaintRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="S_ComplaintRegister.aspx.designer.cs">
-      <DependentUpon>S_ComplaintRegister.aspx</DependentUpon>
+    <Compile Include="P_ComplaintRegister.aspx.designer.cs">
+      <DependentUpon>P_ComplaintRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="ComplaintReply.aspx.cs">
       <DependentUpon>ComplaintReply.aspx</DependentUpon>
@@ -302,6 +304,13 @@
     </Compile>
     <Compile Include="ProvideFeedback.aspx.designer.cs">
       <DependentUpon>ProvideFeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_ComplaintStatus.aspx.cs">
+      <DependentUpon>P_ComplaintStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ComplaintStatus.aspx.designer.cs">
+      <DependentUpon>P_ComplaintStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="P_ViewAttendanceList.aspx.cs">
       <DependentUpon>P_ViewAttendanceList.aspx</DependentUpon>
@@ -421,6 +430,13 @@
     </Compile>
     <Compile Include="S_CancelMyBooking.aspx.designer.cs">
       <DependentUpon>S_CancelMyBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="S_ComplaintRegister.aspx.cs">
+      <DependentUpon>S_ComplaintRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="S_ComplaintRegister.aspx.designer.cs">
+      <DependentUpon>S_ComplaintRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="S_ComplaintStatus.aspx.cs">
       <DependentUpon>S_ComplaintStatus.aspx</DependentUpon>

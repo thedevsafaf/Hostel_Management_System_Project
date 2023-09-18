@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ComplaintRegister.aspx.cs" Inherits="Hostel_Management_System_Project.S_ComplaintRegister" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ParentSite.Master" AutoEventWireup="true" CodeBehind="P_ComplaintRegister.aspx.cs" Inherits="Hostel_Management_System_Project.P_ComplaintRegister" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS - Register Student Complaint
+    Zafe HMS - Register Parent Complaint
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <main>
@@ -23,9 +24,21 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <asp:TextBox ID="tb_StudentName" runat="server" CssClass="form-control" Enabled="false" placeholder="On behalf of"></asp:TextBox>
+                                        <label for="tb_StudentName">
+                                            Raising On Behalf Of Student
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <asp:TextBox ID="tb_StudentID" runat="server" CssClass="form-control" Enabled="false" placeholder="Student ID" Visible="false"></asp:TextBox>
+
                             <div class="mb-0">
                                 <div class="d-grid">
-                                    <asp:Button ID="btn_RegisterComplaint" CssClass="btn btn-primary btn-block" runat="server" Text="Register Complaint" OnClick="btn_RegisterComplaint_Click"  />
+                                    <asp:Button ID="btn_RegisterComplaint" CssClass="btn btn-primary btn-block" runat="server" Text="Register Complaint" OnClick="btn_RegisterComplaint_Click" />
                                 </div>
                             </div>
                         </div>

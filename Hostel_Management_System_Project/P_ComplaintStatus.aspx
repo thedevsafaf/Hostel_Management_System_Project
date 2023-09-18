@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ComplaintStatus.aspx.cs" Inherits="Hostel_Management_System_Project.S_ComplaintStatus" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ParentSite.Master" AutoEventWireup="true" CodeBehind="P_ComplaintStatus.aspx.cs" Inherits="Hostel_Management_System_Project.P_ComplaintStatus" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Complaints Status
 </asp:Content>
@@ -17,7 +17,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Complaints raised by You and Parent
+                    Complaints raised by You and Child
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
