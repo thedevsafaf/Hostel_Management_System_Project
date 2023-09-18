@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_RequestRefund.aspx.cs" Inherits="Hostel_Management_System_Project.S_RequestRefund" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ParentSite.Master" AutoEventWireup="true" CodeBehind="P_RequestRefund.aspx.cs" Inherits="Hostel_Management_System_Project.P_RequestRefund" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS - Student Request Refund
+    Zafe HMS - Parent Request Refund
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <main>
+    <main>
         <%-- Table Information --%>
 
         <div class="container-fluid px-4">
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Parent Dashboard</li>
             </ol>
 
              <%-- no data found error msg alert --%>
@@ -22,7 +22,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Student <%= Session["name"] %>'s Cancelled Payments
+                    Parent <%= Session["name"] %>'s Cancelled Payments
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
@@ -69,6 +69,5 @@
             </div>
         </div>
     </main>
-
 
 </asp:Content>

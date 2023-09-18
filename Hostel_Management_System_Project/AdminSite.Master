@@ -398,7 +398,8 @@
                             <div class="collapse" id="collapsePayments" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="ViewPaymentHistory.aspx">Payment History</a>
-                                    <a class="nav-link" href="ViewRefundNotifications.aspx">Refund Requests</a>
+                                    <a class="nav-link" href="ViewParentRefundNotifications.aspx">Parent Refund Requests</a>
+                                    <a class="nav-link" href="ViewStudentRefundNotifications.aspx">Student Refund Requests</a>
                                 </nav>
                             </div>
 

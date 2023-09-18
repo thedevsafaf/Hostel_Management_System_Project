@@ -9,13 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class S_RequestRefund : System.Web.UI.Page
+    public partial class P_RequestRefund : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Call a method to populate attendance list
+                // Call a method to populate refund list
                 PopulateMyRefundPaymentsList();
             }
         }
@@ -25,9 +25,9 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id as payment_id, pt.amount as amount, pt.payment_date as payment_date, pt.payment_status from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join payment_table pt on bt.payment_id = pt.payment_id where bt.student_id = @student_id AND pt.payment_status = 'Cancelled';", con);
-                cmd.Parameters.AddWithValue("@student_id", student_id);
+                string parent_id = Session["parent_id"].ToString();
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id as payment_id, pt.amount as amount, pt.payment_date as payment_date, pt.payment_status, pt.paid_by from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join payment_table pt on bt.payment_id = pt.payment_id inner join student_table st on st.student_id = bt.student_id inner join parent_table prt on prt.student_id = st.student_id where prt.parent_id = @parent_id AND pt.payment_status = 'Cancelled';", con);
+                cmd.Parameters.AddWithValue("@parent_id", parent_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -52,7 +52,9 @@ namespace Hostel_Management_System_Project
         protected void btn_Refund_Click(object sender, EventArgs e)
         {
             int paymentId = Convert.ToInt32(((Button)sender).CommandArgument);
-            int studentId = Convert.ToInt32(Session["student_id"].ToString());
+            int parentId = Convert.ToInt32(Session["parent_id"].ToString());
+            int studentId;
+            string parentName;
             string studentName;
             decimal paymentAmount;
             DateTime paymentDate, bookingDate;
@@ -61,12 +63,14 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("sp_for_refund_notifications", con);
+                SqlCommand cmd = new SqlCommand("sp_for_parent_refund_notifications", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@payment_Id", paymentId);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    studentId = Convert.ToInt32(reader["student_id"].ToString());
+                    parentName = reader["parent_name"].ToString();
                     studentName = reader["name"].ToString();
                     paymentAmount = Convert.ToDecimal(reader["payment_amount"]);
                     paymentDate = Convert.ToDateTime(reader["payment_date"]);
@@ -81,8 +85,8 @@ namespace Hostel_Management_System_Project
                 }
 
                 // Create the notification message
-                string message = $"Refund requested for\nPayment ID: {paymentId}\nStudent Name: {studentName}\nPayment Amount: {paymentAmount:C}\nPayment Date: {paymentDate:dd-MM-yyyy}\nBooking Date: {bookingDate:dd-MM-yyyy}\nRoom Number: {roomNo}";
-                
+                string message = $"Refund requested for Parent \nName: {parentName}\nPayment ID: {paymentId}\nStudent Name: {studentName}\nPayment Amount: {paymentAmount:C}\nPayment Date: {paymentDate:dd-MM-yyyy}\nBooking Date: {bookingDate:dd-MM-yyyy}\nRoom Number: {roomNo}";
+
 
 
                 // Insert the notification message into the notification_table (assuming you have a method for this)
@@ -108,7 +112,7 @@ namespace Hostel_Management_System_Project
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
                 cmd.Parameters.AddWithValue("@studentId", studentId);
                 cmd.Parameters.AddWithValue("@message", message);
-                cmd.Parameters.AddWithValue("@notification_type", "S_Refund_Req");
+                cmd.Parameters.AddWithValue("@notification_type", "P_Refund_Req");
                 cmd.ExecuteNonQuery();
             }
         }
@@ -125,6 +129,5 @@ namespace Hostel_Management_System_Project
                 cmd.ExecuteNonQuery();
             }
         }
-
     }
 }

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class S_MakePayment : System.Web.UI.Page
+    public partial class P_MakePayment : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
 
@@ -18,17 +18,37 @@ namespace Hostel_Management_System_Project
         {
             if (!IsPostBack)
             {
+                // fetching student id and name for the parent booking
+                FetchStudentID();
+
                 // Populate the dropdown with available rooms from the database
                 PopulateBookedRoomDropdown();
+            }
+        }
+
+        private void FetchStudentID()
+        {
+            con.Open();
+            int parentID = Convert.ToInt32(Session["parent_id"]);
+            SqlCommand cmd = new SqlCommand("select pt.student_id,st.name as student_name from parent_table pt inner join student_table st on st.student_id = pt.student_id where parent_id = @parent_id", con);
+            cmd.Parameters.AddWithValue("@parent_id", parentID);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            con.Close();
+            if (dt.Rows.Count > 0)
+            {
+                tb_StudentID.Text = dt.Rows[0]["student_id"].ToString();
+                tb_StudentName.Text = dt.Rows[0]["student_name"].ToString();
             }
         }
 
         private void PopulateBookedRoomDropdown()
         {
             con.Open();
-            int student_id = Convert.ToInt32(Session["student_id"]);
-            SqlCommand cmd = new SqlCommand("select bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id where student_id = @student_id and rf.room_status = 'On Hold'", con);
-            cmd.Parameters.AddWithValue("@student_id", student_id);
+            int parent_id = Convert.ToInt32(Session["parent_id"]);
+            SqlCommand cmd = new SqlCommand("select bt.booking_id, bt.student_id, pt.parent_id, pt.name as pt_name, bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join parent_table pt on pt.student_id = bt.student_id where pt.parent_id = @parent_id and rf.room_status = 'On Hold'", con);
+            cmd.Parameters.AddWithValue("@parent_id", parent_id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -51,12 +71,12 @@ namespace Hostel_Management_System_Project
             try
             {
                 con.Open();
-                int studentId = Convert.ToInt32(Session["student_id"]);
+                int studentId = Convert.ToInt32(tb_StudentID.Text);
                 decimal paymentAmount = decimal.Parse(tb_Amount.Text);
                 DateTime paymentDate = DateTime.Parse(tb_PaymentDate.Text);
 
                 // Step 1: Insert payment record into the payment_table
-                int paymentId = InsertPaymentRecord(studentId, paymentAmount, paymentDate, "Paid", "Student");
+                int paymentId = InsertPaymentRecord(studentId, paymentAmount, paymentDate, "Paid", "Parent");
 
                 // Step 2: Update booking status to "Confirmed"
                 UpdateBookingStatus(selectedBookingId, "Confirmed", paymentId);
@@ -65,9 +85,9 @@ namespace Hostel_Management_System_Project
                 UpdateRoomStatus(selectedBookingId);
 
                 // Redirect to a success page or display a success message
-                Response.Redirect("PaymentSuccess.aspx");
+                Response.Write("PaymentSuccess.aspx");
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 // Handle exceptions as needed
                 string errorMessage = exc.Message;
@@ -79,7 +99,6 @@ namespace Hostel_Management_System_Project
             }
         }
 
-        //Insert Record to Payment Table
         private int InsertPaymentRecord(int studentId, decimal paymentAmount, DateTime paymentDate, string paymentStatus, string paidBy)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO payment_table (student_id, amount, payment_date, payment_status, created_at, paid_by) VALUES (@studentId, @amount, @paymentDate, @paymentStatus, GETDATE(), @paidBy); SELECT SCOPE_IDENTITY();", con))
@@ -116,6 +135,7 @@ namespace Hostel_Management_System_Project
                 cmd.ExecuteNonQuery();
             }
         }
+
 
     }
 }

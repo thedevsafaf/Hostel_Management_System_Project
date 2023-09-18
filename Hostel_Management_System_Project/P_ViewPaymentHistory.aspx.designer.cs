@@ -11,16 +11,25 @@ namespace Hostel_Management_System_Project
 {
 
 
-    public partial class ViewRefundNotifications
+    public partial class P_ViewPaymentHistory
     {
 
         /// <summary>
-        /// RefundNotificationsRepeater control.
+        /// noResultsMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RefundNotificationsRepeater;
+        protected global::System.Web.UI.WebControls.Panel noResultsMessage;
+
+        /// <summary>
+        /// PaymentRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater PaymentRepeater;
     }
 }

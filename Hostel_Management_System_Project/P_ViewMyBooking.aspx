@@ -1,45 +1,42 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_RequestRefund.aspx.cs" Inherits="Hostel_Management_System_Project.S_RequestRefund" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ParentSite.Master" AutoEventWireup="true" CodeBehind="P_ViewMyBooking.aspx.cs" Inherits="Hostel_Management_System_Project.P_ViewMyBooking" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS - Student Request Refund
+     Zafe HMS -  <%= Session["name"] %>'s Room Booking
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <main>
+    <main>
         <%-- Table Information --%>
 
         <div class="container-fluid px-4">
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Parent Dashboard</li>
             </ol>
 
              <%-- no data found error msg alert --%>
             <asp:Panel ID="noResultsMessage" runat="server" CssClass="alert alert-warning" Visible="false">
-                No refunds available.
+                No result found.
             </asp:Panel>
 
-            <%--refund table data--%>
+            <%--room booking table data--%>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Student <%= Session["name"] %>'s Cancelled Payments
+                    Parent <%= Session["name"] %>'s Room Booking
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
-                        <asp:Repeater ID="RefundPaymentRepeater" runat="server">
+                        <asp:Repeater ID="BookingRepeater" runat="server">
                             <HeaderTemplate>
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Payment ID</th>
-                                            <th>Amount</th>
-                                            <th>Booked Room No</th>
-                                            <th>Date Booked</th>
+                                            <th>Booking Date</th>
+                                            <th>Room No</th>
+                                            <th>Room Description</th>
+                                            <th>Payment Actions</th>
                                             <th>Booking Status</th>
-                                            <th>Date Paid</th>
-                                            <th>Payment Status</th>
-                                            <th>Request Refund</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,16 +44,16 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
-                                    <td><%# Eval("payment_id") %></td>
-                                    <td><%# Eval("amount") %></td>
-                                    <td><%# Eval("booked_room_no") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("booking_status") %></td>
-                                    <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("payment_status") %></td>
-                                    <td>
-                                        <asp:Button ID="btn_Refund" runat="server" CssClass="btn btn-success" Text="REFUND"  CommandArgument='<%# Eval("payment_id") %>' OnClick="btn_Refund_Click" ToolTip="You will get your money back within 2 Bank Working Days" />
+                                    <td><%# Eval("room_no") %></td>
+                                    <td><%# Eval("room_desc").ToString().Length > 60 ? Eval("room_desc").ToString().Substring(0, 60) + "..." : Eval("room_desc") %></td>
+                                     <td>
+                                         <%# Eval("booking_status").ToString() == "Auto Cancelled" ? "Not Paid" :
+                                             Eval("booking_status").ToString() == "Cancelled" || Eval("booking_status").ToString() == "Cancelled by Admin" ? "Refundable" :
+                                             Eval("booking_status").ToString() == "Confirmed" ? "Paid" : "-" %>
                                     </td>
+                                    <td><%# Eval("booking_status") %></td>
+                                   
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -69,6 +66,4 @@
             </div>
         </div>
     </main>
-
-
 </asp:Content>

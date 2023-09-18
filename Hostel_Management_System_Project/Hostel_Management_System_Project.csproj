@@ -77,6 +77,7 @@
     <Content Include="ApprovalParentsList.aspx" />
     <Content Include="ApprovalStudentsList.aspx" />
     <Content Include="CancelBooking.aspx" />
+    <Content Include="P_CancelMyBooking.aspx" />
     <Content Include="P_ComplaintRegister.aspx" />
     <Content Include="ComplaintReply.aspx" />
     <Content Include="FeedbackSuccess.aspx" />
@@ -88,12 +89,19 @@
     <Content Include="PaymentSuccess.aspx" />
     <Content Include="ProvideFeedback.aspx" />
     <Content Include="P_ComplaintStatus.aspx" />
+    <Content Include="P_MakePayment.aspx" />
+    <Content Include="P_RequestRefund.aspx" />
+    <Content Include="P_RoomBooking.aspx" />
+    <Content Include="P_RoomDetails.aspx" />
     <Content Include="P_ViewAttendanceList.aspx" />
+    <Content Include="P_ViewAvailableRoomsList.aspx" />
     <Content Include="P_ViewChildComplaintsList.aspx" />
     <Content Include="P_ViewChildNotificationsList.aspx" />
     <Content Include="P_ViewFoodMenuItemsList.aspx" />
     <Content Include="P_ViewHostelDetails.aspx" />
+    <Content Include="P_ViewMyBooking.aspx" />
     <Content Include="P_ViewNotificationsList.aspx" />
+    <Content Include="P_ViewPaymentHistory.aspx" />
     <Content Include="P_ViewProfile.aspx" />
     <Content Include="P_ViewRoomFacilitiesList.aspx" />
     <Content Include="RoomDetails.aspx" />
@@ -133,12 +141,13 @@
     <Content Include="ViewFoodMenuItemsList.aspx" />
     <Content Include="ViewHostelDetails.aspx" />
     <Content Include="ViewNotificationsList.aspx" />
+    <Content Include="ViewParentRefundNotifications.aspx" />
     <Content Include="ViewParentsList.aspx" />
     <Content Include="VIewPaymentHistory.aspx" />
-    <Content Include="ViewRefundNotifications.aspx" />
     <Content Include="ViewRoomFacilitiesList.aspx" />
     <Content Include="ViewRoomGallery.aspx" />
     <Content Include="ViewStaffsList.aspx" />
+    <Content Include="ViewStudentRefundNotifications.aspx" />
     <Content Include="ViewStudentsList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -227,6 +236,13 @@
     <Compile Include="CancelBooking.aspx.designer.cs">
       <DependentUpon>CancelBooking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="P_CancelMyBooking.aspx.cs">
+      <DependentUpon>P_CancelMyBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_CancelMyBooking.aspx.designer.cs">
+      <DependentUpon>P_CancelMyBooking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="P_ComplaintRegister.aspx.cs">
       <DependentUpon>P_ComplaintRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -312,12 +328,47 @@
     <Compile Include="P_ComplaintStatus.aspx.designer.cs">
       <DependentUpon>P_ComplaintStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="P_MakePayment.aspx.cs">
+      <DependentUpon>P_MakePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_MakePayment.aspx.designer.cs">
+      <DependentUpon>P_MakePayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_RequestRefund.aspx.cs">
+      <DependentUpon>P_RequestRefund.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_RequestRefund.aspx.designer.cs">
+      <DependentUpon>P_RequestRefund.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_RoomBooking.aspx.cs">
+      <DependentUpon>P_RoomBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_RoomBooking.aspx.designer.cs">
+      <DependentUpon>P_RoomBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_RoomDetails.aspx.cs">
+      <DependentUpon>P_RoomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_RoomDetails.aspx.designer.cs">
+      <DependentUpon>P_RoomDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="P_ViewAttendanceList.aspx.cs">
       <DependentUpon>P_ViewAttendanceList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="P_ViewAttendanceList.aspx.designer.cs">
       <DependentUpon>P_ViewAttendanceList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_ViewAvailableRoomsList.aspx.cs">
+      <DependentUpon>P_ViewAvailableRoomsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ViewAvailableRoomsList.aspx.designer.cs">
+      <DependentUpon>P_ViewAvailableRoomsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="P_ViewChildComplaintsList.aspx.cs">
       <DependentUpon>P_ViewChildComplaintsList.aspx</DependentUpon>
@@ -347,12 +398,26 @@
     <Compile Include="P_ViewHostelDetails.aspx.designer.cs">
       <DependentUpon>P_ViewHostelDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="P_ViewMyBooking.aspx.cs">
+      <DependentUpon>P_ViewMyBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ViewMyBooking.aspx.designer.cs">
+      <DependentUpon>P_ViewMyBooking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="P_ViewNotificationsList.aspx.cs">
       <DependentUpon>P_ViewNotificationsList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="P_ViewNotificationsList.aspx.designer.cs">
       <DependentUpon>P_ViewNotificationsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P_ViewPaymentHistory.aspx.cs">
+      <DependentUpon>P_ViewPaymentHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="P_ViewPaymentHistory.aspx.designer.cs">
+      <DependentUpon>P_ViewPaymentHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="P_ViewProfile.aspx.cs">
       <DependentUpon>P_ViewProfile.aspx</DependentUpon>
@@ -627,6 +692,13 @@
     <Compile Include="ViewNotificationsList.aspx.designer.cs">
       <DependentUpon>ViewNotificationsList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewParentRefundNotifications.aspx.cs">
+      <DependentUpon>ViewParentRefundNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewParentRefundNotifications.aspx.designer.cs">
+      <DependentUpon>ViewParentRefundNotifications.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewParentsList.aspx.cs">
       <DependentUpon>ViewParentsList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -640,13 +712,6 @@
     </Compile>
     <Compile Include="VIewPaymentHistory.aspx.designer.cs">
       <DependentUpon>VIewPaymentHistory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewRefundNotifications.aspx.cs">
-      <DependentUpon>ViewRefundNotifications.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewRefundNotifications.aspx.designer.cs">
-      <DependentUpon>ViewRefundNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewRoomFacilitiesList.aspx.cs">
       <DependentUpon>ViewRoomFacilitiesList.aspx</DependentUpon>
@@ -668,6 +733,13 @@
     </Compile>
     <Compile Include="ViewStaffsList.aspx.designer.cs">
       <DependentUpon>ViewStaffsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewStudentRefundNotifications.aspx.cs">
+      <DependentUpon>ViewStudentRefundNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewStudentRefundNotifications.aspx.designer.cs">
+      <DependentUpon>ViewStudentRefundNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewStudentsList.aspx.cs">
       <DependentUpon>ViewStudentsList.aspx</DependentUpon>

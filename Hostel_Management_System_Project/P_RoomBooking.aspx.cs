@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class S_RoomBooking : System.Web.UI.Page
+    public partial class P_RoomBooking : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
 
@@ -19,8 +18,27 @@ namespace Hostel_Management_System_Project
 
             if (!IsPostBack)
             {
+                // fetching student id and name for the parent booking
+                FetchStudentID();
                 // Populate the dropdown with available rooms from the database
                 PopulateAvailableRoomDropdown();
+            }
+        }
+
+        private void FetchStudentID()
+        {
+            con.Open();
+            int parentID = Convert.ToInt32(Session["parent_id"]);
+            SqlCommand cmd = new SqlCommand("select pt.student_id,st.name as student_name from parent_table pt inner join student_table st on st.student_id = pt.student_id where parent_id = @parent_id", con);
+            cmd.Parameters.AddWithValue("@parent_id", parentID);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            con.Close();
+            if (dt.Rows.Count > 0)
+            {
+                tb_StudentID.Text = dt.Rows[0]["student_id"].ToString();
+                tb_StudentName.Text = dt.Rows[0]["student_name"].ToString();
             }
         }
 
@@ -48,15 +66,15 @@ namespace Hostel_Management_System_Project
                     SqlCommand cmd = new SqlCommand("INSERT INTO booking_table (student_id, room_id, booking_date, status, created_at, booked_by) " +
                                                     "VALUES (@studentId, @roomId, @bookingDate, @bookingStatus, GETDATE(), @booked_by)", con);
                     //set the booking status as needed ("Pending" here)
-                    //and the booked by as "Student" here
-                    int studentId = Convert.ToInt32(Session["student_id"]);
+                    //set the booked_by as "Parent" here
+                    int studentId = Convert.ToInt32(tb_StudentID.Text);
                     int selectedRoomId = Convert.ToInt32(ddl_RoomSelection.SelectedValue);
                     DateTime bookingDate = DateTime.Parse(tb_BookingDate.Text);
                     cmd.Parameters.AddWithValue("@studentId", studentId);
                     cmd.Parameters.AddWithValue("@roomId", selectedRoomId);
                     cmd.Parameters.AddWithValue("@bookingDate", bookingDate);
                     cmd.Parameters.AddWithValue("@bookingStatus", "Pending");
-                    cmd.Parameters.AddWithValue("@booked_by", "Student");
+                    cmd.Parameters.AddWithValue("@booked_by", "Parent");
 
                     cmd.ExecuteNonQuery();
 
@@ -67,7 +85,7 @@ namespace Hostel_Management_System_Project
 
                     //clear();
 
-                    Response.Redirect("S_RoomBooking.aspx");
+                    Response.Redirect("P_RoomBooking.aspx");
                 }
             }
             catch (Exception ex)
@@ -101,8 +119,5 @@ namespace Hostel_Management_System_Project
                 Response.Write(errorMessage);
             }
         }
-
-
-
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class ViewRefundNotifications : System.Web.UI.Page
+    public partial class ViewStudentRefundNotifications : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
 
@@ -25,7 +25,7 @@ namespace Hostel_Management_System_Project
         private void LoadRefundNotifications()
         {
             con.Open();
-            string query = "select nt.notification_id, st.student_id,st.name,  nt.notification_type, nt.message, nt.created_at, pt.payment_id, pt.amount, pt.payment_status from payment_table pt inner join student_table st on pt.student_id = st.student_id inner join notification_table nt on nt.student_id = st.student_id where nt.notification_type='Refund' and pt.payment_status IN ('Refunded','Processing Refund') ORDER BY created_at DESC;";
+            string query = "SELECT nt.notification_id, st.student_id, st.name, nt.notification_type, nt.message, nt.created_at, pt.payment_id, pt.amount, pt.payment_status FROM payment_table pt INNER JOIN student_table st ON pt.student_id = st.student_id INNER JOIN notification_table nt ON nt.student_id = st.student_id WHERE nt.notification_type = 'S_Refund_Req' AND pt.payment_status IN ('Refunded', 'Processing Refund') ORDER BY created_at DESC;";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -45,7 +45,7 @@ namespace Hostel_Management_System_Project
             Button btn = (Button)sender;
             HiddenField hfPaymentId = (HiddenField)btn.FindControl("hfPaymentId");
             int paymentId = Convert.ToInt32(hfPaymentId.Value);
-            decimal paymentAmount=5000.00m;
+            decimal paymentAmount = 5000.00m;
 
             // Update the payment status to 'Refunded' and decrement the amount by 5000.00 in your database
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_CancelMyBooking.aspx.cs" Inherits="Hostel_Management_System_Project.S_CancelMyBooking" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS - Cancel Room Booking
+    Zafe HMS - Cancel Student Room Booking
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <main>
