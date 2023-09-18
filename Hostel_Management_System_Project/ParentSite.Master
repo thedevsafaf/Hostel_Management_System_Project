@@ -217,8 +217,8 @@
                             <div class="collapse" id="profileCollapse" aria-labelledby="profileHeading" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="P_ViewProfile.aspx">Parent Information</a>
-                                    <a class="nav-link" href="P_ViewAttendanceList.aspx">Attendance</a>
-                                    <a class="nav-link" href="#">Notifications</a>
+                                    <a class="nav-link" href="P_ViewAttendanceList.aspx">Child Attendance</a>
+                                    <a class="nav-link" href="P_ViewNotificationsList.aspx">My Notifications</a>
                                 </nav>
                             </div>
 
@@ -231,8 +231,8 @@
                             </a>
                             <div class="collapse" id="collapseHostelInfo" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View Hostel Details</a>
-                                    <a class="nav-link" href="#">Room Facilities</a>
+                                    <a class="nav-link" href="P_ViewHostelDetails.aspx">View Hostel Details</a>
+                                    <a class="nav-link" href="P_ViewRoomFacilitiesList.aspx">Room Facilities</a>
                                 </nav>
                             </div>
 
@@ -245,7 +245,7 @@
                             </a>
                             <div class="collapse" id="collapseFoodMenu" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View Daily Menu</a>
+                                    <a class="nav-link" href="P_ViewFoodMenuItemsList.aspx">View Daily Menu</a>
                                 </nav>
                             </div>
 
@@ -284,7 +284,8 @@
                             </a>
                             <div class="collapse" id="collapseNotifications" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View Notifications</a>
+                                    <a class="nav-link" href="P_ViewNotificationsList.aspx">My Notifications</a>
+                                    <a class="nav-link" href="P_ViewChildNotificationsList.aspx">Child Notifications</a>
                                 </nav>
                             </div>
 
@@ -297,9 +298,9 @@
                             </a>
                             <div class="collapse" id="collapseComplaints" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">View Child's Complaints</a>
-                                    <a class="nav-link" href="#">Submit a Complaint</a>
-                                    <a class="nav-link" href="#">View Complaint Status</a>
+                                    <a class="nav-link" href="P_ViewChildComplaintsList.aspx">Child's Complaints</a>
+                                    <a class="nav-link" href="P_ComplaintRegister.aspx">Submit a Complaint</a>
+                                    <a class="nav-link" href="P_ComplaintStatus.aspx">My Complaint Status</a>
                                 </nav>
                             </div>
                             

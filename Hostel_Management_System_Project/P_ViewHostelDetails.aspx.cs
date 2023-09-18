@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class S_ViewHostelDetails : System.Web.UI.Page
+    public partial class P_ViewHostelDetails : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
 

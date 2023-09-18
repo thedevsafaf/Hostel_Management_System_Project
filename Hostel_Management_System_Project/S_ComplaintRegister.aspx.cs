@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class ComplaintRegister : System.Web.UI.Page
+    public partial class S_ComplaintRegister : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True");
 
@@ -21,10 +21,11 @@ namespace Hostel_Management_System_Project
         private void InsertComplaint(int studentId, string complaintText)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("INSERT INTO complaint_table(student_id, complaint, created_at, status) VALUES (@student_id, @complaint, GETDATE(), @status)", con);
+            SqlCommand cmd = new SqlCommand("INSERT INTO complaint_table(student_id, complaint, created_at, status, complaint_type) VALUES (@student_id, @complaint, GETDATE(), @status, @complaint_type)", con);
             cmd.Parameters.AddWithValue("@student_id", studentId);
             cmd.Parameters.AddWithValue("@complaint", complaintText);
             cmd.Parameters.AddWithValue("@status", "Pending");
+            cmd.Parameters.AddWithValue("@complaint_type", "Student");
             cmd.ExecuteNonQuery();
             con.Close();
         }

@@ -11,34 +11,34 @@ namespace Hostel_Management_System_Project
 {
 
 
-    public partial class ComplaintRegister
+    public partial class P_ViewHostelDetails
     {
 
         /// <summary>
-        /// tb_Complaint control.
+        /// HostelRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Complaint;
+        protected global::System.Web.UI.WebControls.Repeater HostelRepeater;
 
         /// <summary>
-        /// rfv_Complaint control.
+        /// HostelPhotoRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Complaint;
+        protected global::System.Web.UI.WebControls.Repeater HostelPhotoRepeater;
 
         /// <summary>
-        /// btn_RegisterComplaint control.
+        /// StaffRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_RegisterComplaint;
+        protected global::System.Web.UI.WebControls.Repeater StaffRepeater;
     }
 }

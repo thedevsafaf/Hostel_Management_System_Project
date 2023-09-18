@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="ComplaintRegister.aspx.cs" Inherits="Hostel_Management_System_Project.ComplaintRegister" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/StudentSite.Master" AutoEventWireup="true" CodeBehind="S_ComplaintRegister.aspx.cs" Inherits="Hostel_Management_System_Project.S_ComplaintRegister" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Zafe HMS - Register a Complaint
+    Zafe HMS - Student Complaint Register
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <main>

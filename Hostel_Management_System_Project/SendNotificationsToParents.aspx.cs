@@ -9,31 +9,31 @@ using System.Web.UI.WebControls;
 
 namespace Hostel_Management_System_Project
 {
-    public partial class SendNotifications : System.Web.UI.Page
+    public partial class SendNotificationsToParents : System.Web.UI.Page
     {
         private string connectionString = "Data Source=DESKTOP-JRHVVPL\\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Populate the dropdown list with student data
+                // Populate the dropdown list with parent data
                 PopulateRecipientDropdown();
             }
         }
 
         private void PopulateRecipientDropdown()
         {
-            string query = "SELECT student_id, name FROM student_table";
+            string query = "  SELECT pt.parent_id, st.student_id as student_id, CONCAT(pt.name, ' - ', st.name) as recipient_name FROM parent_table pt inner join student_table st on st.student_id = pt.student_id";
             DataTable dt = ExecuteQuery(query);
 
             // Bind the data to the dropdown list
             ddl_Recipient.DataSource = dt;
-            ddl_Recipient.DataTextField = "name";
+            ddl_Recipient.DataTextField = "recipient_name";
             ddl_Recipient.DataValueField = "student_id";
             ddl_Recipient.DataBind();
 
             // Add a default "Select" option which is disabled to select
-            ListItem selectItem = new ListItem("Select Any Student", "-1");
+            ListItem selectItem = new ListItem("Select Any Parent", "-1");
             selectItem.Attributes["disabled"] = "disabled"; // Add this line to disable the option
             ddl_Recipient.Items.Insert(0, selectItem);
 
@@ -69,12 +69,12 @@ namespace Hostel_Management_System_Project
                 if (selectedStudentId == -2) // Check if "Select All" is selected
                 {
                     // Send the notification to all students
-                    SendNotificationToAllStudents(message);
+                    SendNotificationToAllParents(message);
                 }
                 else
                 {
                     // Insert the notification into the database
-                    SendNotificationToStudent(selectedStudentId, message);
+                    SendNotificationToParent(selectedStudentId, message);
                 }
             }
             else
@@ -83,7 +83,7 @@ namespace Hostel_Management_System_Project
             }
         }
 
-        private void SendNotificationToAllStudents(string message)
+        private void SendNotificationToAllParents(string message)
         {
             // Create a list to store all student IDs
             List<int> allStudentIds = new List<int>();
@@ -98,7 +98,7 @@ namespace Hostel_Management_System_Project
                 allStudentIds.Add(studentId);
             }
 
-            // Send the notification to each student using the InsertNotification method
+            // Send the notification to each parent using the InsertNotification method
             foreach (int studentId in allStudentIds)
             {
                 InsertNotification(studentId, message);
@@ -107,8 +107,8 @@ namespace Hostel_Management_System_Project
 
 
 
-        //For sending to a specific student using selected student_id from DD
-        private void SendNotificationToStudent(int studentId, string message)
+        //For sending to a specific parent using selected student_id from DD
+        private void SendNotificationToParent(int studentId, string message)
         {
             // Implement the logic to send the notification to a specific student here
             // Use the studentId to send the notification to the selected student
@@ -124,13 +124,15 @@ namespace Hostel_Management_System_Project
                 {
                     cmd.Parameters.AddWithValue("@student_id", studentId);
                     cmd.Parameters.AddWithValue("@message", message);
-                    cmd.Parameters.AddWithValue("@notification_type", "Student");
+                    cmd.Parameters.AddWithValue("@notification_type", "Parent");
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-    }
 
+
+
+
+    }
 }
-   
