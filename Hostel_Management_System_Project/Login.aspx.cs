@@ -29,7 +29,7 @@ namespace Hostel_Management_System_Project
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                // Using session
+                // storing as session variables
                 Session["login_id"] = dt.Rows[0][0].ToString();
                 Session["username"] = dt.Rows[0][1].ToString();
                 Session["student_id"] = dt.Rows[0][3].ToString();
@@ -52,7 +52,7 @@ namespace Hostel_Management_System_Project
                 nameCmd.Parameters.AddWithValue("@loginId", Session["login_id"].ToString());
                 string fullName = nameCmd.ExecuteScalar()?.ToString();
 
-                // Store the full name in the session
+                // Store the full name in the session variable name
                 Session["name"] = fullName;
 
 
@@ -80,15 +80,15 @@ namespace Hostel_Management_System_Project
                 else
                 {
                     // Show SweetAlert for error on invalid user status (unsuccessful login)
+                    //here the students and parents should be approved by Admin for a successful login
                     ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowApprovalErrorAlert();", true);
                 }
 
             }
             else
             {
-
-                // Show SweetAlert for invalid credentials (unsuccessful login)
-                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert();", true);
+                // Show SweetAlert for invalid credentials error (unsuccessful login)
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowInvalidCredsErrorAlert();", true);
 
             }
 

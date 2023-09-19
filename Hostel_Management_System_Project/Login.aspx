@@ -57,7 +57,7 @@
 
     <%-- swal for login errors --%>
     <script type="text/javascript">
-        function ShowErrorAlert() {
+        function ShowInvalidCredsErrorAlert() {
             Swal.fire({
                 icon: 'error',
                 title: 'Login Failed',
