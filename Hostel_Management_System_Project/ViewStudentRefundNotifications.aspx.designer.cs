@@ -15,12 +15,12 @@ namespace Hostel_Management_System_Project
     {
 
         /// <summary>
-        /// RefundNotificationsRepeater control.
+        /// StudentRefundNotificationsRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RefundNotificationsRepeater;
+        protected global::System.Web.UI.WebControls.Repeater StudentRefundNotificationsRepeater;
     }
 }

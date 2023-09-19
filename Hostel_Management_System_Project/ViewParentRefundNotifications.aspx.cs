@@ -25,7 +25,7 @@ namespace Hostel_Management_System_Project
         private void LoadRefundNotifications()
         {
             con.Open();
-            string query = "SELECT nt.notification_id, st.student_id, st.name, nt.notification_type, nt.message, nt.created_at, pt.payment_id, pt.amount, pt.payment_status FROM payment_table pt INNER JOIN student_table st ON pt.student_id = st.student_id INNER JOIN notification_table nt ON nt.student_id = st.student_id WHERE nt.notification_type = 'P_Refund_Req' AND pt.payment_status IN ('Refunded', 'Processing Refund') ORDER BY created_at DESC;";
+            string query = "SELECT nt.notification_id, st.student_id, st.name, nt.notification_type, nt.message, nt.created_at, pt.payment_id, pt.amount, pt.payment_status FROM payment_table pt INNER JOIN student_table st ON pt.student_id = st.student_id INNER JOIN notification_table nt ON nt.student_id = st.student_id inner join parent_table prt on prt.student_id = st.student_id WHERE nt.notification_type = 'P_Refund_Req' AND pt.payment_status IN ('Refunded', 'Processing Refund') AND pt.paid_by = 'Parent'  ORDER BY created_at DESC;";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -33,8 +33,8 @@ namespace Hostel_Management_System_Project
             if (dt.Rows.Count > 0)
             {
                 // Bind the DataTable to the Repeater
-                RefundNotificationsRepeater.DataSource = dt;
-                RefundNotificationsRepeater.DataBind();
+                ParentRefundNotificationsRepeater.DataSource = dt;
+                ParentRefundNotificationsRepeater.DataBind();
             }
         }
 

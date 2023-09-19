@@ -7,7 +7,7 @@
     <div class="container">
         <h2 class="text-light">Student Refund Requests</h2>
         <div class="row">
-            <asp:Repeater ID="RefundNotificationsRepeater" runat="server">
+            <asp:Repeater ID="StudentRefundNotificationsRepeater" runat="server">
                 <ItemTemplate>
                     <div class="col-md-6 mb-1">
                         <div class="card">
