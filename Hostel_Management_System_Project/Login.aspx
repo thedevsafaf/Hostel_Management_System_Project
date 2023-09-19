@@ -55,16 +55,24 @@
         </div>
     </main>
 
-    <%-- swal for login error --%>
+    <%-- swal for login errors --%>
     <script type="text/javascript">
         function ShowErrorAlert() {
             Swal.fire({
                 icon: 'error',
                 title: 'Login Failed',
-                text: 'Invalid credentials or user role!',
+                text: 'Invalid credentials! Try Again!',
+            });
+        }
+        function ShowApprovalErrorAlert() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Admin Approval Required!',
             });
         }
     </script>
+
 
     <%-- function to show or hide the password entered  --%>
     <script>

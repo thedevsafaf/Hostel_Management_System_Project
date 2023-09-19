@@ -29,8 +29,6 @@ namespace Hostel_Management_System_Project
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                string user_type = dt.Rows[0]["user_type"].ToString();
-                
                 // Using session
                 Session["login_id"] = dt.Rows[0][0].ToString();
                 Session["username"] = dt.Rows[0][1].ToString();
@@ -57,27 +55,34 @@ namespace Hostel_Management_System_Project
                 // Store the full name in the session
                 Session["name"] = fullName;
 
+
+                //for checking login conditions
+                string user_type = dt.Rows[0]["user_type"].ToString();
+                string student_status = dt.Rows[0]["student_status"].ToString();
+                string parent_status = dt.Rows[0]["parent_status"].ToString();
+
                 // Close the connection
                 con.Close();
+
 
                 if (user_type == "admin")
                 {
                     Response.Redirect("AdminDashboard.aspx");
                 }
-                else if (user_type == "student" || tb_Email.Text == "test" && tb_Password.Text == "123")
+                else if ((user_type == "student" && student_status == "Approved") || tb_Email.Text == "test" && tb_Password.Text == "123")
                 {
                     Response.Redirect("StudentDashboard.aspx"); 
                 }
-                else if (user_type == "parent" || tb_Email.Text == "testp" && tb_Password.Text == "000")
+                else if ((user_type == "parent" && parent_status == "Approved") || tb_Email.Text == "testp" && tb_Password.Text == "000")
                 {
                     Response.Redirect("ParentDashboard.aspx");
                 }
                 else
                 {
-
-                    // Show SweetAlert for invalid user role (unsuccessful login)
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert();", true);
+                    // Show SweetAlert for error on invalid user status (unsuccessful login)
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowApprovalErrorAlert();", true);
                 }
+
             }
             else
             {
