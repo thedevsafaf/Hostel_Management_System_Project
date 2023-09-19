@@ -11,10 +11,13 @@ namespace Hostel_Management_System_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Check if the username is stored in the session
-            if (Session["username"] != null)
+            if (!IsPostBack)
             {
-                lbl_LoggedInUser.Text = Session["username"].ToString();
+                // Check if the username is stored in the session
+                if (Session["username"] != null)
+                {
+                    lbl_LoggedInUser.Text = Session["username"].ToString();
+                }
             }
         }
     }
