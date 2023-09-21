@@ -35,7 +35,7 @@
                         <!-- Room Photo Section -->
                         <div class="col-md-6">
                             <p><strong>Room Photo: </strong></p>
-                            <asp:Image ID="img_RoomPhoto" runat="server" CssClass="img-fluid room-image" AlternateText="Room Photo" Width="300" Height="200" />
+                            <asp:Image ID="img_RoomPhoto" runat="server" CssClass="img-fluid room-image" AlternateText="Not Found" Width="300" Height="200" />
                         </div>
                     </div>
 

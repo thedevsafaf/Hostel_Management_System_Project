@@ -74,11 +74,11 @@
             }, 2000);
         }
 
-        function ShowErrorAlert() {
+        function ShowErrorAlert(errorMessage) {
             Swal.fire({
                 icon: 'error',
                 title: 'Room Registration Failed',
-                text: 'An error occurred during room registration. Please try again later.',
+                text: errorMessage,
             });
         }
     </script>

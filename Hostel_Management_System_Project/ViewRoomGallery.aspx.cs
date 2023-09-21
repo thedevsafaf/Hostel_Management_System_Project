@@ -46,8 +46,6 @@ namespace Hostel_Management_System_Project
                     return "status-vacant";
                 case "Occupied":
                     return "status-occupied";
-                case "Under Maintenance":
-                    return "status-maintenance";
                 case "Inactive":
                     return "status-inactive";
                 default:

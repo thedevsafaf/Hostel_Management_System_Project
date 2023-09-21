@@ -77,6 +77,32 @@
         function ShowSuccessAlert() {
             Swal.fire({
                 icon: 'success',
+                title: 'Registration Successful',
+                text: 'Your room has been added successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to login page...");
+                window.location.href = 'ViewRoomFacilitiesList.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+    <%-- function to show alerts on successful & failed registration --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
                 title: 'Room Registration Successful',
                 text: 'Your room has been created successfully!',
                 showConfirmButton: false,
@@ -88,11 +114,11 @@
             }, 2000);
         }
 
-        function ShowErrorAlert() {
+        function ShowErrorAlert(errorMessage) {
             Swal.fire({
                 icon: 'error',
                 title: 'Room Registration Failed',
-                text: 'An error occurred during room registration. Please try again later.',
+                text: errorMessage,
             });
         }
     </script>

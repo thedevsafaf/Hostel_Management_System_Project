@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -52,12 +53,16 @@ namespace Hostel_Management_System_Project
                     // Display the room photo
                     img_RoomPhoto.ImageUrl = ResolveUrl("~/RoomPhotos/" + photoUrl);
                 }
+                else
+                {
+                    string noPhotoUrl = "No-Image.png";
+                    img_RoomPhoto.ImageUrl = ResolveUrl("~/RoomPhotos/" + noPhotoUrl);
+                }
             }
             else
             {
-                // Handle the case when the room is not found
-                // For example, you can display an error message or redirect to an error page.
-                Response.Redirect("404.aspx");
+                
+                lbl_RoomDesc.Text = "Please upload Room Photo first to get all details";
             }
         }
     }
