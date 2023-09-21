@@ -33,9 +33,8 @@
                                         <tr>
                                             <th>Sl No</th>
                                             <th>Roll No</th>
-                                            <th>Student Name</th>
-                                            <th>Student Phone</th>
-                                            <th>Parent Name</th>
+                                            <th>Student</th>
+                                            <th>Parent</th>
                                             <th>Booking No</th>
                                             <th>Booking Date</th>
                                             <th>Booking Status</th>
@@ -50,11 +49,12 @@
                                     <td><%# Eval("SerialNumber") %></td>
                                     <td><%# Eval("student_id") %></td>
                                     <td><%# Eval("st_name") %></td>
-                                    <td><%# Eval("st_phone") %></td>
                                     <td><%# Eval("pt_name") %></td>
                                     <td><%# Eval("booking_id") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("booking_status") %></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("booking_status") %>' CssClass='<%# GetStatusCssClass(Eval("booking_status").ToString())+ " bold-status" %>'></asp:Label>
+                                    </td>
                                     <td><%# Eval("room_no") %></td>
                                     <td><%# Eval("booked_by") %></td>
                                 </tr>

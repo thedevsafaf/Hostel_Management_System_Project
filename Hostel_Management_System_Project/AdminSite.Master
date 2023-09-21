@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="templates/css/custom-styles.css" />
 
     <style>
+
+        /* student, parent approval status */
         .status-approved {
             color: limegreen !important;
         }
@@ -49,29 +51,43 @@
             padding: 5px;
         }
 
-
         .bg-gold {
             background: #755a10;
-        }
-
-        .status-present {
-            color: limegreen !important;
-        }
-
-        .status-absent {
-            color: red !important;
         }
 
         .bg-custom-grey {
             background: #181818;
         }
 
+        /*attendance status*/
+        .status-present {
+                color: limegreen !important;
+        }
+
+        .status-absent {
+            color: red !important;
+        }
+
+        /*room status*/
         .status-vacant {
             color: limegreen !important;
         }
 
         .status-occupied {
             color: red !important;
+        }
+
+        /*booking status */
+        .status-confirmed {
+            color: limegreen !important;
+        }
+
+        .status-cancelled, .status-auto-cancelled, .status-admin-cancelled{
+            color: red !important;
+        }
+
+        .status-pending{
+             color: orange !important;
         }
 
         .hostel-photo {

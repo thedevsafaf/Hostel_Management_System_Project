@@ -67,8 +67,12 @@
                                     <td><%# Eval("booking_date", "{0:yyyy-MM-dd}") %></td>
                                     <td><%# Eval("booked_by") %></td>
                                     <td><%# Eval("created_at") %></td>
-                                    <td><%# Eval("status") %></td>
-                                    <td>Not Paid</td>
+                                    <td>
+                                        <span style="font-weight: bold; color: red;"> <%# Eval("status") %></span>
+                                    </td>
+                                    <td> 
+                                        <span style="font-weight: bold; color: deepskyblue;">Not Paid</span>
+                                    </td>
                                 </tr>
                             </itemtemplate>
                             <footertemplate>

@@ -19,6 +19,26 @@ namespace Hostel_Management_System_Project
                 PopulateBookingsList();
             }
         }
+
+        protected string GetStatusCssClass(string status)
+        {
+            switch (status)
+            {
+                case "Confirmed":
+                    return "status-confirmed";
+                case "Cancelled":
+                    return "status-cancelled";
+                case "Pending":
+                    return "status-pending";
+                case "Auto Cancelled":
+                    return "status-auto-cancelled";
+                case "Cancelled by Admin":
+                    return "status-admin-cancelled";
+                default:
+                    return string.Empty; // No specific class for other values
+            }
+        }
+
         private void PopulateBookingsList()
         {
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))

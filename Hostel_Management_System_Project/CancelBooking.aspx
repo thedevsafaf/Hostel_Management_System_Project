@@ -52,7 +52,9 @@
                                     <td><%# Eval("pt_name") %></td>
                                     <td><%# Eval("room_no") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("booking_status") %></td>
+                                    <td>
+                                        <span style="font-weight: bold; color: limegreen;"> <%# Eval("booking_status") %></span>
+                                    </td>
                                     <td>
                                         <asp:Button ID="btn_Cancel" runat="server" CssClass="btn btn-danger" Text="CANCEL"  CommandArgument='<%# Eval("booking_id") %>' OnClick="btn_Cancel_Click" />
                                     </td>
