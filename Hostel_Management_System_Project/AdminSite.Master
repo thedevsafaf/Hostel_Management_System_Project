@@ -90,6 +90,21 @@
              color: orange !important;
         }
 
+        /* pay status  */
+        .status-paid {
+            color: limegreen !important;
+        }
+        .status-cancelled {
+            color: red !important;
+        }
+        .status-processing-refund {
+            color: deepskyblue !important;
+        }
+        .status-refunded {
+            color: grey !important;
+        }
+
+
         .hostel-photo {
             display: inline-block;
             width: 100%;

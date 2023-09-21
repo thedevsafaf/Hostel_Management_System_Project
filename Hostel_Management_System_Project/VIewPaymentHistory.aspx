@@ -31,28 +31,44 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <%-- sl no, payment-id, student, parent, amount, payment_date, payment_status, paid_by, booking_id, booking_date, room_no, booking_status, booked_by, payment id,  
+ --%>
                                             <th>Sl No</th>
-                                            <th>Payment ID</th>
+                                            <th>Payment No</th>
+                                            <th>Student</th>
+                                            <th>Parent</th>
                                             <th>Amount</th>
-                                            <th>Booked Room No</th>
+                                            <th>Booking No</th>
+                                            <th>Booked Room</th>
                                             <th>Booking Date</th>
                                             <th>Booking Status</th>
+                                            <th>Booked By</th>
                                             <th>Payment Date</th>
                                             <th>Payment Status</th>
+                                            <th>Paid By</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# Eval("SerialNumber") %></td>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("payment_id") %></td>
-                                    <td><%# Eval("amount") %></td>
-                                    <td><%# Eval("booked_room_no") %></td>
+                                    <td><%# Eval("st_name") %></td>
+                                    <td><%# Eval("prt_name") %></td>
+                                    <td>
+                                        <b><span style='<%# Eval("amount", "color: " + (Convert.ToInt32(Eval("amount")) == 5000 ? "green" : "grey")) %>'><%# Eval("amount") %></span></b>
+                                    </td>
+                                    <td><%# Eval("booking_id") %></td>
+                                    <td><%# Eval("room_no") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("booking_status") %></td>
+                                    <td><%# Eval("status") %></td>
+                                    <td><%# Eval("booked_by") %></td>
                                     <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("payment_status") %></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("payment_status") %>' CssClass='<%# GetStatusCssClass(Eval("payment_status").ToString())+ " bold-status" %>'></asp:Label>
+                                    </td>
+                                    <td><%# Eval("paid_by") %></td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

@@ -78,7 +78,7 @@ namespace Hostel_Management_System_Project
                 getPaymentIdCmd.Parameters.AddWithValue("@bookingId", bookingId);
                 int paymentId = Convert.ToInt32(getPaymentIdCmd.ExecuteScalar());
 
-                // Update the payment table to mark the payment as 'Cancelled' (cancelled for now will set status to 'Awaiting Refund' when user click on Refund Button on S_RequestRefund.aspx)
+                // Update the payment table to mark the payment as 'Cancelled' (cancelled for now, will set status to 'Processing Refund' when user click on Refund Button on S_RequestRefund.aspx)
                 SqlCommand updatePaymentCmd = new SqlCommand("UPDATE payment_table SET payment_status = 'Cancelled' WHERE payment_id = @paymentId", con);
                 updatePaymentCmd.Parameters.AddWithValue("@paymentId", paymentId);
                 updatePaymentCmd.ExecuteNonQuery();

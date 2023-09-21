@@ -20,14 +20,42 @@ namespace Hostel_Management_System_Project
             }
         }
 
+        protected string GetStatusCssClass(string status)
+        {
+            switch (status)
+            {
+                case "Paid":
+                    return "status-paid";
+                case "Cancelled":
+                    return "status-cancelled";
+                case "Processing Refund":
+                    return "status-processing-refund";
+                case "Refunded":
+                    return "status-refunded";
+                default:
+                    return string.Empty; // No specific class for other values
+            }
+        }
+
         private void PopulateAllPaymentHistoryList()
         {
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                //string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id as payment_id, pt.amount as amount, pt.payment_date as payment_date, pt.payment_status from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join payment_table pt on bt.payment_id = pt.payment_id;", con);
-                //cmd.Parameters.AddWithValue("@student_id", student_id);
+                string query = @"
+                        select 
+                              ROW_NUMBER() OVER (ORDER BY pt.payment_id) AS sl_no,*,st.name as st_name, prt.name as prt_name 
+                        from 
+                              payment_table pt 
+                        inner join 
+                              booking_table bt on bt.payment_id = pt.payment_id 
+                        inner join 
+                              room_facilities rf on rf.room_id = bt.room_id 
+                        inner join 
+                              student_table st on st.student_id = pt.student_id 
+                        inner join 
+                              parent_table prt on prt.student_id = st.student_id;";
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
