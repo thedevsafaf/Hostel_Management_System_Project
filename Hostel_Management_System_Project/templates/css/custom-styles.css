@@ -42,10 +42,6 @@
     color: red !important;
 }
 
-.status-maintenance {
-    color: orange !important;
-}
-
 .hostel-photo {
     display: inline-block;
     width: 100%;

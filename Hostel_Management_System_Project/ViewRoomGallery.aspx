@@ -27,6 +27,7 @@
                                     <table class="table table-bordered table-dark" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th>Sl No</th>
                                                 <th>Room Number</th>
                                                 <th>Room Status</th>
                                                 <th>Room Photo</th>
@@ -36,6 +37,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr>
+                                        <td><%# Eval("sl_no") %></td>
                                         <td><%# Eval("room_no") %></td>
                                         <td>
                                             <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("room_status") %>' CssClass='<%# GetStatusCssClass(Eval("room_status").ToString())+ " bold-status" %>'></asp:Label>

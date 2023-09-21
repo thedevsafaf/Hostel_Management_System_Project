@@ -10,7 +10,7 @@
             <!-- Room Details Section -->
             <div class="mt-3 card">
 
-                <div class="card-body">
+                <div class="card-body bg-dark text-light">
 
                     <div class="row mb-1">
                         <div class="col-md-6">

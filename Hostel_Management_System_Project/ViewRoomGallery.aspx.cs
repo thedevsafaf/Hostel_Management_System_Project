@@ -30,7 +30,7 @@ namespace Hostel_Management_System_Project
         {
             var roomData = new DataTable();
             con.Open();
-            var query = "SELECT room_facilities.room_id, room_no, room_desc, room_status, photo_url FROM room_facilities inner join room_photos on room_facilities.room_id = room_photos.room_id";
+            var query = "SELECT ROW_NUMBER() OVER (ORDER BY room_facilities.room_id) AS sl_no, room_no, room_desc, room_status, photo_url FROM room_facilities inner join room_photos on room_facilities.room_id = room_photos.room_id";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(roomData);

@@ -43,7 +43,7 @@
                                             </div>                
                                         
                                     </div>
-                                    <div class="card-footer text-center py-5">
+                                    <div class="card-footer text-center p-3">
                                         <div class="small"><a href="ViewRoomGallery.aspx">View Rooms Photos</a></div>
                                     </div>
                                 </div>

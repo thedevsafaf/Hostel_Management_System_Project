@@ -27,8 +27,6 @@ namespace Hostel_Management_System_Project
                     return "status-vacant";
                 case "Occupied":
                     return "status-occupied";
-                case "Under Maintenance":
-                    return "status-maintenance";
                 case "Inactive":
                     return "status-inactive";
                 default:
@@ -39,7 +37,7 @@ namespace Hostel_Management_System_Project
         void DisplayRoomsList()
         {
             con.Open();
-            string query = "SELECT * FROM room_facilities where room_status in ('Vacant', 'Occupied', 'Under Maintenance')";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no, * FROM room_facilities where room_status in ('Vacant', 'Occupied', 'Under Maintenance')";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

@@ -60,7 +60,7 @@
  
                                         </div>
                                         <div class="card-footer text-center py-3">
-                                            <div class="small"><a href="RoomFacilitiesList.aspx">View Rooms Details</a></div>
+                                            <div class="small"><a href="ViewRoomFacilitiesList.aspx">View Rooms Details</a></div>
                                         </div>
                                     </div>
                                 </div>
