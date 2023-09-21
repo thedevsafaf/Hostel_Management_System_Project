@@ -70,7 +70,8 @@ namespace Hostel_Management_System_Project
             {
                 // Handle exceptions as needed
                 string errorMessage = ex.Message;
-                Response.Write(errorMessage);
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
         }
 
@@ -87,6 +88,9 @@ namespace Hostel_Management_System_Project
                         cmd.Parameters.AddWithValue("@status", status);
                         con.Open();
                         cmd.ExecuteNonQuery();
+
+                        // Show a SweetAlert for successful photo upload
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
                     }
                 }
             }
@@ -94,7 +98,8 @@ namespace Hostel_Management_System_Project
             {
                 // Handle exceptions as needed
                 string errorMessage = ex.Message;
-                Response.Write(errorMessage);
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
         }
 

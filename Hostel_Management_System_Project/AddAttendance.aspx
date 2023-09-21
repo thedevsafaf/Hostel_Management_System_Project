@@ -60,4 +60,32 @@
             </div>
         </div>
     </main>
+
+     <%-- function to show alerts on successful & failed attendance registration --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful Attendance Registration',
+                text: 'Added the student attendance successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Attendance List Page ...");
+                window.location.href = 'ViewAttendanceList.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Attendance Registration Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+
 </asp:Content>
