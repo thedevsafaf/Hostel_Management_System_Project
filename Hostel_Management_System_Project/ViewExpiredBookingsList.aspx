@@ -44,11 +44,12 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Booking ID</th>
-                                            <th>Student Name</th>
-                                            <th>Phone no</th>
+                                            <th>Booking No</th>
+                                            <th>Student</th>
+                                            <th>Phone</th>
                                             <th>Room No</th>
                                             <th>Booking Date</th>
+                                            <th>Booked By</th>
                                             <th>Created At</th>
                                             <th>Booking Status</th>
                                             <th>Reason</th>
@@ -63,7 +64,8 @@
                                     <td><%# Eval("name") %></td>
                                     <td><%# Eval("phone_number") %></td>
                                     <td><%# Eval("room_no") %></td>
-                                    <td><%# Eval("booking_date", "{0:yyyy-MM-dd HH:mm:ss}") %></td>
+                                    <td><%# Eval("booking_date", "{0:yyyy-MM-dd}") %></td>
+                                    <td><%# Eval("booked_by") %></td>
                                     <td><%# Eval("created_at") %></td>
                                     <td><%# Eval("status") %></td>
                                     <td>Not Paid</td>

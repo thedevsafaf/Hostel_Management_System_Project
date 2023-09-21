@@ -54,6 +54,14 @@
             background: #755a10;
         }
 
+        .status-present {
+            color: limegreen !important;
+        }
+
+        .status-absent {
+            color: red !important;
+        }
+
         .bg-custom-grey {
             background: #181818;
         }

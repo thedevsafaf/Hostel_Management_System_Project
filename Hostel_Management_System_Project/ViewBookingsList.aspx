@@ -10,7 +10,7 @@
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Admin Dashboard</li>
             </ol>
 
              <%-- no data found error msg alert --%>
@@ -22,7 +22,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Student <%= Session["name"] %>'s Room Booking
+                     Students Room Booking
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
@@ -32,11 +32,15 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
+                                            <th>Roll No</th>
                                             <th>Student Name</th>
+                                            <th>Student Phone</th>
+                                            <th>Parent Name</th>
+                                            <th>Booking No</th>
                                             <th>Booking Date</th>
-                                            <th>Room No</th>
-                                            <th>Room Description</th>
                                             <th>Booking Status</th>
+                                            <th>Room No</th>
+                                            <th>Booked By</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,11 +48,15 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
+                                    <td><%# Eval("student_id") %></td>
                                     <td><%# Eval("st_name") %></td>
+                                    <td><%# Eval("st_phone") %></td>
+                                    <td><%# Eval("pt_name") %></td>
+                                    <td><%# Eval("booking_id") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("room_no") %></td>
-                                    <td><%# Eval("room_desc") %></td>
                                     <td><%# Eval("booking_status") %></td>
+                                    <td><%# Eval("room_no") %></td>
+                                    <td><%# Eval("booked_by") %></td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

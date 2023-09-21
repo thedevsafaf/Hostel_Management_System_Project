@@ -7,9 +7,14 @@
     <main>
         <div class="container-fluid px-5">
             <h1 class="mt-4 text-primary">Room Information</h1>
+
+             <%-- no data found error msg alert --%>
+            <asp:Panel ID="noResultsMessage" runat="server" CssClass="alert alert-danger" Visible="false">
+                Please upload a room photo to see all the room details.
+            </asp:Panel>
+
             <!-- Room Details Section -->
             <div class="mt-3 card">
-
                 <div class="card-body bg-dark text-light">
 
                     <div class="row mb-1">

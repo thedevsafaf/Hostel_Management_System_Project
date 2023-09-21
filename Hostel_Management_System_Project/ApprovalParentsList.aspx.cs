@@ -42,7 +42,17 @@ namespace Hostel_Management_System_Project
         void DisplayParentsList()
         {
             con.Open();
-            string query = "SELECT parent_table.parent_id, parent_table.login_id, parent_table.name, parent_table.email, parent_table.phone_number, parent_table.student_id, student_table.name as student_name, parent_table.status, parent_table.created_at FROM parent_table inner join student_table on student_table.student_id = parent_table.student_id where parent_table.status in ('Approved', 'Pending', 'Rejected')";
+            string query = @"
+                SELECT 
+                       ROW_NUMBER() OVER (ORDER BY pt.parent_id) AS sl_no, pt.parent_id, pt.login_id, pt.name, pt.email, 
+                       pt.phone_number, pt.student_id, st.name as student_name, pt.status, pt.created_at 
+                FROM 
+                       parent_table pt 
+                INNER JOIN 
+                    student_table st on st.student_id = pt.student_id 
+                WHERE 
+                    pt.status in ('Approved', 'Pending', 'Rejected')";
+
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

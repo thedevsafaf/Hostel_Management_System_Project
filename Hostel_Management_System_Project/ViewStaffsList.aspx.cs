@@ -25,7 +25,7 @@ namespace Hostel_Management_System_Project
         void DisplayStaffsList()
         {
             con.Open();
-            string query = "SELECT * FROM staff_table";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY staff_id) AS sl_no,* FROM staff_table";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

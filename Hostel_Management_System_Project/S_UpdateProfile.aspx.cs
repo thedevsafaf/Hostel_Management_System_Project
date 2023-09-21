@@ -19,9 +19,9 @@ namespace Hostel_Management_System_Project
             if (!IsPostBack)
             {
                 con.Open();
+                string student_id = Session["student_id"].ToString();
                 SqlCommand cmd = new SqlCommand("sp_students_list", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                string student_id = Session["student_id"].ToString();
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

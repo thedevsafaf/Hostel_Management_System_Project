@@ -21,7 +21,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Cancel Room Booking
+                    Confirmed Room Bookings Cancellation Window
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
@@ -31,10 +31,12 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Booking ID</th>
-                                            <th>Booking Date</th>
+                                            <th>Booking No</th>
+                                            <th>Roll No</th>
+                                            <th>Student</th>
+                                            <th>Parent</th>
                                             <th>Room No</th>
-                                            <th>Room Description</th>
+                                            <th>Booking Date</th>
                                             <th>Booking Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -45,9 +47,11 @@
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
                                     <td><%# Eval("booking_id") %></td>
-                                    <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
+                                    <td><%# Eval("student_id") %></td>
+                                    <td><%# Eval("st_name") %></td>
+                                    <td><%# Eval("pt_name") %></td>
                                     <td><%# Eval("room_no") %></td>
-                                    <td><%# Eval("room_desc") %></td>
+                                    <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("booking_status") %></td>
                                     <td>
                                         <asp:Button ID="btn_Cancel" runat="server" CssClass="btn btn-danger" Text="CANCEL"  CommandArgument='<%# Eval("booking_id") %>' OnClick="btn_Cancel_Click" />

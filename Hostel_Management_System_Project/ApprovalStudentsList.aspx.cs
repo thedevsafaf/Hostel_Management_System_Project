@@ -42,7 +42,13 @@ namespace Hostel_Management_System_Project
         void DisplayStudentsList()
         {
             con.Open();
-            string query = "SELECT student_id, login_id, name, email, phone_number, status, created_at FROM student_table where status in ('Approved', 'Pending', 'Rejected')";
+            string query = @"
+                SELECT 
+                    ROW_NUMBER() OVER (ORDER BY student_id) AS sl_no, student_id, login_id, name, email, phone_number, status, created_at 
+                FROM 
+                    student_table 
+                WHERE 
+                    status in ('Approved', 'Pending', 'Rejected')";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

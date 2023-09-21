@@ -57,6 +57,14 @@
             background: #181818;
         }
 
+        .status-present {
+            color: limegreen !important;
+        }
+
+        .status-absent {
+            color: red !important;
+        }
+
         .status-vacant {
             color: limegreen !important;
         }

@@ -24,9 +24,22 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                //string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id, bt.booking_date, bt.status as booking_status, rf.room_id, rf.room_no, rf.room_desc from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id and bt.status = 'Confirmed';", con);
-                //cmd.Parameters.AddWithValue("@student_id", student_id);
+                string query = @"
+                    SELECT 
+                        ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id, 
+                        st.name as st_name, pt.name as pt_name,
+                        bt.booking_date, bt.status as booking_status, rf.room_no
+                    FROM 
+                        booking_table bt 
+                    INNER JOIN
+                        room_facilities rf on bt.room_id = rf.room_id
+                    INNER JOIN
+                        student_table st on st.student_id = bt.student_id
+                    INNER JOIN
+                        parent_table pt on pt.student_id = st.student_id
+                    AND     
+                        bt.status = 'Confirmed';";
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

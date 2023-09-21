@@ -61,8 +61,8 @@ namespace Hostel_Management_System_Project
             }
             else
             {
-                
-                lbl_RoomDesc.Text = "Please upload Room Photo first to get all details";
+
+                noResultsMessage.Visible = true;
             }
         }
     }

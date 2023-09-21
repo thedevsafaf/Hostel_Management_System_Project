@@ -76,9 +76,20 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection("Data Source=DESKTOP-JRHVVPL\\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
+                string query = @"
+                    SELECT 
+                          ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS sl_no,* 
+                    FROM 
+                          booking_table bt 
+                    INNER JOIN 
+                          room_facilities rt on rt.room_id = bt.room_id 
+                    INNER JOIN 
+                          student_table st on st.student_id = bt.student_id 
+                    WHERE 
+                          bt.status = 'Auto Cancelled'";
 
                 // Fetch expired bookings
-                SqlCommand cmd = new SqlCommand("SELECT ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS sl_no,* FROM booking_table bt inner join room_facilities rt on rt.room_id = bt.room_id inner join student_table st on st.student_id = bt.student_id WHERE bt.status = 'Auto Cancelled'", con);
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

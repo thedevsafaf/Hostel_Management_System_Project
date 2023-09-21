@@ -43,18 +43,16 @@ namespace Hostel_Management_System_Project
                 clear();
 
                 // Show a SweetAlert for successful registration
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
-                Response.Redirect("ViewStaffsList.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
+                //Response.Redirect("ViewStaffsList.aspx");
 
             }
             catch (Exception exc)
             {
                 // Get the error message from the exception
                 string errorMessage = exc.Message;
-                Response.Write(errorMessage);
-
                 // You can also show a SweetAlert for the failed registration
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
         }
     }

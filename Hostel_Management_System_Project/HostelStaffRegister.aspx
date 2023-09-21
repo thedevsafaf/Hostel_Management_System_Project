@@ -27,8 +27,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3 mb-md-0">
-                                        <asp:DropDownList ID="ddl_StaffRole" runat="server" CssClass="form-control">
-                                            <asp:ListItem Text="Select Staff Role" Value="" />
+                                        <asp:DropDownList ID="ddl_StaffRole" runat="server" CssClass="form-control dropdown-icon">
+                                            <asp:ListItem Text="Select Staff Role" Value="" Disabled="disabled" Selected="True" />
                                             <asp:ListItem Text="Warden/Manager" Value="Warden/Manager" />
                                             <asp:ListItem Text="Receptionist" Value="Receptionist" />
                                             <asp:ListItem Text="Cook/Chef" Value="Cook/Chef" />
@@ -80,4 +80,32 @@
             </div>
         </div>
     </main>
+
+     <%-- function to show alerts on successful & failed staff registration --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful Staff Registration',
+                text: 'Added the Hostel staff successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Staffs List Page ...");
+                window.location.href = 'ViewStaffsList.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Attendance Registration Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+
 </asp:Content>

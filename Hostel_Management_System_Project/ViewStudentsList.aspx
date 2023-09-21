@@ -52,7 +52,8 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Student ID</th>
+                                            <th>Sl No</th>
+                                            <th>Roll No</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -66,11 +67,12 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("student_id") %></td>
                                     <td><%# Eval("name") %></td>
                                     <td><%# Eval("email") %></td>
                                     <td><%# Eval("phone_number") %></td>
-                                        <td>
+                                    <td>
                                         <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("status") %>' CssClass='<%# GetStatusCssClass(Eval("status").ToString())+ " bold-status" %>'></asp:Label>
                                     </td>
                                     <td><%# Eval("created_at") %></td>

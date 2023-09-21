@@ -16,9 +16,6 @@ namespace Hostel_Management_System_Project
         {
             if (!IsPostBack) 
             {
-                //to get a fresh page by removing the cache on browser back button
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.Cache.SetNoStore();
             }
         }
 
@@ -32,13 +29,23 @@ namespace Hostel_Management_System_Project
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
+            
             if (dt.Rows.Count > 0)
             {
                 // storing as session variables
-                Session["login_id"] = dt.Rows[0][0].ToString();
-                Session["username"] = dt.Rows[0][1].ToString();
-                Session["student_id"] = dt.Rows[0][3].ToString();
-                Session["parent_id"] = dt.Rows[0][4].ToString();
+                Session["login_id"] = dt.Rows[0]["login_id"].ToString();
+                string login_id = Session["login_id"].ToString();
+                Session["username"] = dt.Rows[0]["username"].ToString();
+                string username = Session["username"].ToString();
+                Session["student_id"] = dt.Rows[0]["student_id"].ToString();
+                string student_id = Session["student_id"].ToString();
+                Session["parent_id"] = dt.Rows[0]["parent_id"].ToString();
+                string parent_id = Session["parent_id"].ToString();
+
+                Console.Write(login_id);
+                Console.Write(username);
+                Console.Write(student_id);
+                Console.Write(parent_id);
 
                 // Query to get the user's name from the appropriate table
                 string nameQuery = @"
@@ -66,8 +73,7 @@ namespace Hostel_Management_System_Project
                 string student_status = dt.Rows[0]["student_status"].ToString();
                 string parent_status = dt.Rows[0]["parent_status"].ToString();
 
-                // Close the connection
-                con.Close();
+                
 
 
                 if (user_type == "admin")
@@ -88,7 +94,6 @@ namespace Hostel_Management_System_Project
                     //here the students and parents should be approved by Admin for a successful login
                     ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowApprovalErrorAlert();", true);
                 }
-
             }
             else
             {

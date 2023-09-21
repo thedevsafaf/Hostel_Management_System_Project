@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
 
 namespace Hostel_Management_System_Project
 {
@@ -141,5 +142,42 @@ namespace Hostel_Management_System_Project
             }
 
         }
+
+        protected void EditMenu_Click(object sender, EventArgs e)
+        {
+            int meal_id = Convert.ToInt32((sender as Button).CommandArgument);
+            Session["meal_id"] = meal_id;
+            Response.Redirect("UpdateFoodMenuItem.aspx");
+        }
+
+        //for delete button action
+        [System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        [WebMethod]
+        public static string DeleteFoodMenuItem(int mealId)
+        {
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+
+                // CAUTION! USED DIRECT DELETION HERE!
+                string updateFoodMenuItemQuery = "delete from food_menu_table where meal_id = @meal_id";
+                SqlCommand cmd = new SqlCommand(updateFoodMenuItemQuery, con);
+                cmd.Parameters.AddWithValue("@meal_id", mealId);
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                if (rowsAffected > 0)
+                {
+                    return "success";
+                }
+                else
+                {
+                    return "error";
+                }
+            }
+        }
+
+
     }
 }

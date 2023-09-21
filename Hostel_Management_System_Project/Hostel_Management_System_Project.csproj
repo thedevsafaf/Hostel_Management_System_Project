@@ -129,6 +129,7 @@
     <Content Include="S_ViewProfile.aspx" />
     <Content Include="S_ViewRoomFacilitiesList.aspx" />
     <Content Include="templates\css\custom-styles.css" />
+    <Content Include="UpdateFoodMenuItem.aspx" />
     <Content Include="UpdateParent.aspx" />
     <Content Include="UpdateRoom.aspx" />
     <Content Include="UpdateStudent.aspx" />
@@ -607,6 +608,13 @@
     </Compile>
     <Compile Include="S_ViewRoomFacilitiesList.aspx.designer.cs">
       <DependentUpon>S_ViewRoomFacilitiesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateFoodMenuItem.aspx.cs">
+      <DependentUpon>UpdateFoodMenuItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateFoodMenuItem.aspx.designer.cs">
+      <DependentUpon>UpdateFoodMenuItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateParent.aspx.cs">
       <DependentUpon>UpdateParent.aspx</DependentUpon>

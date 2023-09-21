@@ -67,7 +67,10 @@
                                     <td><%# Eval("student_id") %></td>
                                     <td><%# Eval("st_name") %></td>
                                     <td><%# Eval("date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("status") %></td>
+                                    <td>
+                                       <%-- <%# Eval("status") %>--%>
+                                        <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("status") %>' CssClass='<%# GetStatusCssClass(Eval("status").ToString())+ " bold-status" %>'></asp:Label>
+                                    </td>
                                     <td><%# Eval("created_at") %></td>
                                 </tr>
                             </ItemTemplate>

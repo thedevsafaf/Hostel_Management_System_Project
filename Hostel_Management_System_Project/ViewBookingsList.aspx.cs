@@ -24,9 +24,27 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.student_id, st.name as st_name, st.phone_number as st_phone, bt.booking_date, bt.status as booking_status, rf.room_id as room_id, rf.room_no as room_no, rf.room_desc as room_desc from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join student_table st on st.student_id = bt.student_id;", con);
-                cmd.Parameters.AddWithValue("@student_id", student_id);
+                string query = @"
+                    SELECT
+                        ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber,
+                        bt.student_id,
+                        st.name AS st_name,
+                        st.phone_number AS st_phone,
+                        pt.name AS pt_name,
+                        bt.booking_id as booking_id,
+                        bt.booking_date,
+                        bt.status AS booking_status,
+                        rf.room_no AS room_no,
+                        bt.booked_by
+                    FROM
+                        booking_table bt
+                    INNER JOIN
+                        room_facilities rf ON bt.room_id = rf.room_id
+                    INNER JOIN
+                        student_table st ON st.student_id = bt.student_id
+                    INNER JOIN
+                        parent_table pt ON pt.student_id = st.student_id;";
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

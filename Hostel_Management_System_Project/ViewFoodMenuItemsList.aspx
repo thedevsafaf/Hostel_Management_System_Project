@@ -81,6 +81,8 @@
                                                 <th>Price</th>
                                                 <th>Description</th>
                                                 <th>Created At</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -94,6 +96,12 @@
                                         <td><%# Eval("meal_price") %></td>
                                         <td><%# Eval("meal_description") %></td>
                                         <td><%# Eval("created_at") %></td>
+                                         <td>
+                                            <asp:Button ID="btn_Edit" runat="server" CssClass="btn btn-success" Text="EDIT" OnClick="EditMenu_Click" CommandArgument='<%# Eval("meal_id") %>' />
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btn_Delete" runat="server" CssClass="btn btn-danger" Text="DELETE" CommandArgument='<%# Eval("meal_id") %>' data-meal-id='<%# Eval("meal_id") %>' OnClientClick="return confirmDelete(this);" />
+                                        </td>
                                     </tr>
                                 </ItemTemplate>
                                 <FooterTemplate>
@@ -115,6 +123,77 @@
                 </div>                                               
         </div>
     </main>
+
+    <script>
+        // function to delete the foodmenuitem with a confirmation alert
+        function confirmDelete(button) {
+            var mealId = button.getAttribute("data-meal-id");
+
+            Swal.fire({
+                title: 'Are you sure you want to delete this food menu item?',
+                text: 'This action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion via AJAX
+                    $.ajax({
+                        type: "POST",
+                        url: "ViewFoodMenuItemsList.aspx/DeleteFoodMenuItem",
+                        data: JSON.stringify({ mealId: mealId }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.d === "success") {
+                                // Show a success message
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Deleted!',
+                                    text: 'The food menu item has been deleted successfully.',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+
+                                // Redirect to the ViewFoodMenuItemsList.aspx page after a delay (2 seconds)
+                                setTimeout(function () {
+                                    window.location.href = 'ViewFoodMenuItemsList.aspx';
+                                }, 2000);
+                            } else {
+                                // Show an error message
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred while deleting the food menu item.',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            }
+                        },
+                        error: function () {
+                            // Show an error message in case of AJAX failure
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while communicating with the server.',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Prevent the default postback of the button
+            return false;
+        }
+    </script>
+
+
+
 
     <%-- pagination jquery custom function --%>
 

@@ -38,6 +38,19 @@ namespace Hostel_Management_System_Project
             }
         }
 
+        protected string GetStatusCssClass(string status)
+        {
+            switch (status)
+            {
+                case "Present":
+                    return "status-present";
+                case "Absent":
+                    return "status-absent";
+                default:
+                    return string.Empty; // No specific class for other values
+            }
+        }
+
         protected void FilterButton_Click(object sender, EventArgs e)
         {
             string selectedStatus = statusFilter.SelectedValue;
