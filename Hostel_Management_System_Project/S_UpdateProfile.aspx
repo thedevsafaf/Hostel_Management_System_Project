@@ -108,6 +108,33 @@
         </div>
     </main>
 
+     <%-- function to show alerts on successful & failed updation --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Updation Successful',
+                text: 'Your profile has been updated successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Profile Page...");
+                window.location.href = 'S_ViewProfile.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Updation Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+
     <script>
         //js function to show or hide the password entered
         document.getElementById("showPassword").addEventListener("change", function () {

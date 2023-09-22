@@ -28,7 +28,7 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Student ID</th>
+                                            <th>Roll No</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>

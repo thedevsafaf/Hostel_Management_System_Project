@@ -23,6 +23,19 @@ namespace Hostel_Management_System_Project
             }
         }
 
+        protected string GetStatusCssClass(string status)
+        {
+            switch (status)
+            {
+                case "Present":
+                    return "status-present";
+                case "Absent":
+                    return "status-absent";
+                default:
+                    return string.Empty; // No specific class for other values
+            }
+        }
+
         private void PopulateAttendanceList()
         {
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))

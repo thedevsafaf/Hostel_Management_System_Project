@@ -134,11 +134,11 @@
             }, 2000);
         }
 
-        function ShowErrorAlert() {
+        function ShowErrorAlert(errorMessage) {
             Swal.fire({
                 icon: 'error',
                 title: 'Updation Failed',
-                text: 'An error occurred during Updation. Please try again later.',
+                text: errorMessage,
             });
         }
     </script>

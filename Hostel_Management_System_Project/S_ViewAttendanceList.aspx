@@ -57,7 +57,9 @@
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
                                     <td><%# Eval("date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("status") %></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("status") %>' CssClass='<%# GetStatusCssClass(Eval("status").ToString())+ " bold-status" %>'></asp:Label>
+                                    </td>
                                     <td><%# Eval("created_at") %></td>
                                 </tr>
                             </ItemTemplate>

@@ -78,9 +78,9 @@ namespace Hostel_Management_System_Project
                 con.Close();
 
                 //remove this when setting swal
-                Response.Redirect("S_ViewProfile.aspx");
+                //  Response.Redirect("S_ViewProfile.aspx");
                 // Show a SweetAlert for successful updation
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
             }
             catch (Exception exc)
             {
@@ -88,7 +88,7 @@ namespace Hostel_Management_System_Project
                 string errorMessage = exc.Message;
 
                 // You can also show a SweetAlert for the failed updation
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
 
         }
