@@ -32,7 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Payment ID</th>
+                                            <th>Payment No</th>
                                             <th>Amount</th>
                                             <th>Booked Room No</th>
                                             <th>Booking Date</th>
@@ -47,12 +47,14 @@
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
                                     <td><%# Eval("payment_id") %></td>
-                                    <td><%# Eval("amount") %></td>
+                                    <td><b><%# Eval("amount") %></b></td>
                                     <td><%# Eval("booked_room_no") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("booking_status") %></td>
                                     <td><%# Eval("payment_date", "{0:dd-MM-yyyy}") %></td>
-                                    <td><%# Eval("payment_status") %></td>
+                                    <td>
+                                        <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("payment_status") %>' CssClass='<%# GetStatusCssClass(Eval("payment_status").ToString())+ " bold-status" %>'></asp:Label>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>

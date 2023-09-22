@@ -97,31 +97,4 @@
         }
     </script>
 
-    <%-- function to show alerts on successful & failed registration --%>
-
-    <script type="text/javascript">
-        function ShowSuccessAlert() {
-            Swal.fire({
-                icon: 'success',
-                title: 'Room Registration Successful',
-                text: 'Your room has been created successfully!',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            setTimeout(function () {
-                console.log("Redirecting to Room Facilities List Page ...");
-                window.location.href = 'ViewRoomFacilitiesList.aspx';
-            }, 2000);
-        }
-
-        function ShowErrorAlert(errorMessage) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Room Registration Failed',
-                text: errorMessage,
-            });
-        }
-    </script>
-
-
 </asp:Content>

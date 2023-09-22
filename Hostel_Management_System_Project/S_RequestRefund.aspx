@@ -15,7 +15,7 @@
 
              <%-- no data found error msg alert --%>
             <asp:Panel ID="noResultsMessage" runat="server" CssClass="alert alert-warning" Visible="false">
-                No refunds available.
+                No refunds available. You will be refunded the amount once the Admin approve the same.
             </asp:Panel>
 
             <%--refund table data--%>
@@ -32,7 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
-                                            <th>Payment ID</th>
+                                            <th>Payment No</th>
                                             <th>Amount</th>
                                             <th>Booked Room No</th>
                                             <th>Date Booked</th>
