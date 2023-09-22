@@ -29,7 +29,7 @@ namespace Hostel_Management_System_Project
         void DisplayFoodMenuItemsList()
         {
             con.Open();
-            string query = "SELECT * FROM food_menu_table";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY meal_id) AS sl_no,* FROM food_menu_table";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -59,7 +59,7 @@ namespace Hostel_Management_System_Project
         private void BindFoodMenuData(string selectedTime, string selectedDay)
         {
             // Modify your SQL query based on the selected filters
-            string query = "SELECT * FROM food_menu_table WHERE 1=1";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY meal_id) AS sl_no,* FROM food_menu_table WHERE 1=1";
 
             if (selectedTime != "All")
             {
@@ -106,7 +106,7 @@ namespace Hostel_Management_System_Project
         private void FilterFoodMenuData(string searchQuery)
         {
             // Modify your SQL query to include the search condition
-            string query = "SELECT * FROM food_menu_table WHERE 1=1";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY meal_id) AS sl_no,* FROM food_menu_table WHERE 1=1";
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
