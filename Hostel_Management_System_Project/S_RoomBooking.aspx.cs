@@ -67,14 +67,17 @@ namespace Hostel_Management_System_Project
 
                     //clear();
 
-                    Response.Redirect("S_RoomBooking.aspx");
+                    //Response.Redirect("S_RoomBooking.aspx");
+                    // Show a SweetAlert for successful room registration
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
                 }
             }
             catch (Exception ex)
             {
                 // Handle exceptions as needed
                 string errorMessage = ex.Message;
-                Response.Write(errorMessage);
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
 
         }

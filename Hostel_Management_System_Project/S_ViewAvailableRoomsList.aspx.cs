@@ -35,7 +35,7 @@ namespace Hostel_Management_System_Project
         void DisplayAvailableRoomsList()
         {
             con.Open();
-            string query = "SELECT * FROM room_facilities where room_status = 'Vacant'";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no, * FROM room_facilities where room_status = 'Vacant'";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -61,7 +61,7 @@ namespace Hostel_Management_System_Project
         private void BindRoomData(string searchQuery)
         {
             con.Open();
-            string query = "SELECT room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status = 'Vacant'";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no, room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status = 'Vacant'";
 
             // Add conditions based on the search query
             
