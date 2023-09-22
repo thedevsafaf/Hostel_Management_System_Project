@@ -24,7 +24,14 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("select ft.feedback_id, ft.student_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, ft.feedback, ft.created_at from feedback_table ft inner join student_table st on st.student_id = ft.student_id;", con);
+                string query = @"
+                    select 
+                        ROW_NUMBER() OVER (ORDER BY ft.feedback_id) AS sl_no, ft.feedback_id, ft.student_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, ft.feedback, ft.created_at 
+                    from 
+                        feedback_table ft 
+                    inner join 
+                        student_table st on st.student_id = ft.student_id;";
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

@@ -45,4 +45,32 @@
             </div>
         </div>
     </main>
+
+    
+    <%-- function to show alerts on successful & failed sent notifications --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Notifications Sent Successfully',
+                text: 'You have sent the notifications to Parent/s successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to viewing notifications list page...");
+                window.location.href = 'ViewNotificationsList.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Notifications Sent Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
 </asp:Content>

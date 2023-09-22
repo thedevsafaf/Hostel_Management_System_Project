@@ -25,7 +25,16 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("select nt.notification_id, nt.student_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, nt.message, nt.created_at from notification_table nt inner join student_table st on st.student_id = nt.student_id;", con);
+                string query = @"
+                        select 
+                               ROW_NUMBER() OVER (ORDER BY nt.notification_id) AS sl_no, nt.notification_id, nt.student_id, st.name as st_name, st.email as st_email, nt.message, nt.created_at, nt.notification_type
+                        from 
+                                notification_table nt 
+                        inner join 
+                                student_table st on st.student_id = nt.student_id
+                        where 
+                                nt.notification_type in ('Parent', 'Student');";
+                SqlCommand cmd = new SqlCommand(query, con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

@@ -126,7 +126,19 @@ namespace Hostel_Management_System_Project
                     cmd.Parameters.AddWithValue("@message", message);
                     cmd.Parameters.AddWithValue("@notification_type", "Student");
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        // Show a SweetAlert for successful room registration
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Get the error message from the exception
+                        string errorMessage = ex.Message;
+                        // Show a SweetAlert for the error
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
+                    }
                 }
             }
         }

@@ -26,11 +26,11 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Notification ID</th>
+                                            <th>Sl No</th>
                                             <th>Student Name</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Notification Message</th>  
+                                            <th>Notification Message</th> 
+                                            <th>Recipient</th>
                                             <th>Created At</th>
                                         </tr>
                                     </thead>
@@ -38,11 +38,11 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# Eval("notification_id") %></td>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("st_name") %></td>
                                     <td><%# Eval("st_email") %></td>
-                                    <td><%# Eval("st_phone") %></td>
                                     <td><%# Eval("message") %></td>
+                                    <td><%# Eval("notification_type") %></td>
                                     <td><%# Eval("created_at") %></td>
                                 </tr>
                             </ItemTemplate>

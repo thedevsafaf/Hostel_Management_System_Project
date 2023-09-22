@@ -26,7 +26,7 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Feedback ID</th>
+                                            <th>Sl No</th>
                                             <th>Student Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -38,7 +38,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# Eval("feedback_id") %></td>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("st_name") %></td>
                                     <td><%# Eval("st_email") %></td>
                                     <td><%# Eval("st_phone") %></td>
