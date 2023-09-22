@@ -95,4 +95,31 @@
         </div>
     </main>
 
+     <%-- function to show alerts on successful & failed reply comments from admin --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Successful Admin Reply',
+                text: 'Your reply has been added successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Complaints List Page ...");
+                window.location.href = 'ViewComplaintsList.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Admin Reply Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+
 </asp:Content>

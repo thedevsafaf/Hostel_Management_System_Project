@@ -67,7 +67,9 @@ namespace Hostel_Management_System_Project
                     // Update successful, you can show a success message or redirect to a confirmation page
                     //Response.Write("Reply sent successfully!");
                     //SuccessReplyMessage.Visible = true;
-                    Response.Redirect("ViewComplaintsList.aspx");
+                    //Response.Redirect("ViewComplaintsList.aspx");
+                    // Show a SweetAlert for successful room registration
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
                 }
                 else
                 {
@@ -79,7 +81,9 @@ namespace Hostel_Management_System_Project
             catch (Exception ex)
             {
                 // Handle any exceptions that occur during the update
-                Response.Write("An error occurred: " + ex.Message);
+                string errorMessage = ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
+
             }
         }
     }

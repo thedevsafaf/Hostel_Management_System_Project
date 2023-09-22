@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
 
 namespace Hostel_Management_System_Project
 {
@@ -36,11 +37,39 @@ namespace Hostel_Management_System_Project
             }
         }
 
-        protected void btn_Reopen_Click(object sender, EventArgs e)
+        //protected void btn_Reopen_Click(object sender, EventArgs e)
+        //{
+        //    int complaint_id = Convert.ToInt32((sender as Button).CommandArgument);
+        //    Session["complaint_id"] = complaint_id;
+        //    Response.Redirect("ComplaintReply.aspx");
+        //}
+
+        //for reopen button action
+        [System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
+        [WebMethod]
+        public static string ReopenComplaint(int complaintId)
         {
-            int complaint_id = Convert.ToInt32((sender as Button).CommandArgument);
-            Session["complaint_id"] = complaint_id;
-            Response.Redirect("ComplaintReply.aspx");
+            using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
+            {
+                con.Open();
+
+                string updateComplaintStatusQuery = "update complaint_table set status = 'Open' where complaint_id = @complaint_id";
+                SqlCommand cmd = new SqlCommand(updateComplaintStatusQuery, con);
+                cmd.Parameters.AddWithValue("@complaint_id", complaintId);
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                if (rowsAffected > 0)
+                {
+                    return "success";
+                }
+                else
+                {
+                    return "error";
+                }
+            }
         }
+
     }
 }

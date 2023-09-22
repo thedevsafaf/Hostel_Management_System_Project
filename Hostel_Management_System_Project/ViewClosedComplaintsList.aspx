@@ -48,7 +48,7 @@
                                     <td><%# Eval("reply") %></td>
                                     <td><%# Eval("created_at") %></td>
                                      <td>
-                                        <asp:Button ID="btn_Reopen" runat="server" CssClass="btn btn-secondary" Text="REOPEN"  CommandArgument='<%# Eval("complaint_id") %>' OnClick="btn_Reopen_Click" />
+                                        <asp:Button ID="btn_Reopen" runat="server" CssClass="btn btn-secondary" Text="REOPEN"  CommandArgument='<%# Eval("complaint_id") %>' data-complaint-id='<%# Eval("complaint_id") %>' OnClientClick="return confirmReopen(this);" />
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -62,4 +62,73 @@
             </div>
         </div>
     </main>
+
+     <script>
+        // function to reopen the complaint ticket with a confirmation alert
+        function confirmReopen(button) {
+            var complaintId = button.getAttribute("data-complaint-id");
+
+            Swal.fire({
+                title: 'Are you sure you want to Reopen this Complaint Ticket?',
+                text: 'This action is not fixed?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#6C757D',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, Reopen it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion via AJAX
+                    $.ajax({
+                        type: "POST",
+                        url: "ViewClosedComplaintsList.aspx/ReopenComplaint",
+                        data: JSON.stringify({ complaintId: complaintId }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.d === "success") {
+                                // Show a success message
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Reopened!',
+                                    text: 'The Complaint has been Reopened successfully.',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+
+                                // Redirect to the ViewComplaintsList.aspx page after a delay (2 seconds)
+                                setTimeout(function () {
+                                    window.location.href = 'ViewComplaintsList.aspx';
+                                }, 2000);
+                            } else {
+                                // Show an error message
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error!',
+                                    text: 'An error occurred while reopening the Complaint.',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            }
+                        },
+                        error: function () {
+                            // Show an error message in case of AJAX failure
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: 'An error occurred while communicating with the server.',
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Prevent the default postback of the button
+            return false;
+        }
+     </script>
+
 </asp:Content>
