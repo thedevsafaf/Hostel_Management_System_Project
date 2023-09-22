@@ -32,7 +32,6 @@
                                     <asp:ListItem Text="Filter by Status" Value="" />
                                     <asp:ListItem Text="Vacant" Value="Vacant" />
                                     <asp:ListItem Text="Occupied" Value="Occupied" />
-                                    <asp:ListItem Text="Under Maintenance" Value="Under Maintenance" />
                                 </asp:DropDownList>
                             </div>
                              <div class="col-md-2">
@@ -51,6 +50,7 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Sl No</th>
                                             <th>Room No</th>
                                             <th>Room Description</th>
                                             <th>Room Status</th>
@@ -60,10 +60,13 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td>
                                         <asp:HyperLink ID="lnk_RoomDetails" runat="server" NavigateUrl='<%# "S_RoomDetails.aspx?roomId=" + Eval("room_id") %>' Text='<%# Eval("room_no") %>' />
                                     </td>
-                                    <td width="70%"><%# Eval("room_desc") %></td>
+                                    <td width="70%">
+                                        <%# Eval("room_desc") %>
+                                    </td>
                                     <td>
                                         <asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("room_status") %>' CssClass='<%# GetStatusCssClass(Eval("room_status").ToString())+ " bold-status" %>'></asp:Label>
                                     </td>

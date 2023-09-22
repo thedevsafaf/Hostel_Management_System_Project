@@ -27,10 +27,6 @@ namespace Hostel_Management_System_Project
                     return "status-vacant";
                 case "Occupied":
                     return "status-occupied";
-                case "Under Maintenance":
-                    return "status-maintenance";
-                case "Inactive":
-                    return "status-inactive";
                 default:
                     return string.Empty; // No specific class for other values
             }
@@ -39,7 +35,7 @@ namespace Hostel_Management_System_Project
         void DisplayRoomsList()
         {
             con.Open();
-            string query = "SELECT * FROM room_facilities where room_status in ('Vacant', 'Occupied', 'Under Maintenance')";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no, * FROM room_facilities where room_status in ('Vacant', 'Occupied')";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -72,7 +68,7 @@ namespace Hostel_Management_System_Project
         private void BindRoomData(string selectedStatus, string searchQuery)
         {
             con.Open();
-            string query = "SELECT room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status IN ('Vacant', 'Occupied', 'Under Maintenance')";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no,room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status IN ('Vacant', 'Occupied')";
 
             // Add conditions based on the selected status and search query
             if (!string.IsNullOrEmpty(selectedStatus))
@@ -116,43 +112,5 @@ namespace Hostel_Management_System_Project
                 noResultsMessage.Visible = true; // Show the no results message
             }
         }
-
-
-
-        //protected void EditRoom_Click(object sender, EventArgs e)
-        //{
-        //    int room_id = Convert.ToInt32((sender as Button).CommandArgument);
-        //    Session["room_id"] = room_id;
-        //    Response.Redirect("UpdateRoom.aspx");
-        //}
-
-
-        ////for delete button action
-        //[System.Web.Script.Services.ScriptMethod(ResponseFormat = System.Web.Script.Services.ResponseFormat.Json)]
-        //[WebMethod]
-        //public static string DeleteRoom(int roomId)
-        //{
-        //    using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
-        //    {
-        //        con.Open();
-
-        //        // Update the status of the room to "inactive" instead of deleting the record
-        //        string updateRoomQuery = "update room_facilities set room_status = 'Inactive' where room_id = @room_id";
-        //        SqlCommand cmd = new SqlCommand(updateRoomQuery, con);
-        //        cmd.Parameters.AddWithValue("@room_id", roomId);
-        //        int rowsAffected = cmd.ExecuteNonQuery();
-
-        //        con.Close();
-
-        //        if (rowsAffected > 0)
-        //        {
-        //            return "success";
-        //        }
-        //        else
-        //        {
-        //            return "error";
-        //        }
-        //    }
-        //}
     }
 }
