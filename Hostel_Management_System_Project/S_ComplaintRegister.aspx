@@ -34,4 +34,31 @@
             </div>
         </div>
     </main>
+
+    <%-- function to show alerts on successful & failed complaint registration --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Complaint Registration Successful',
+                text: 'Your complaint has been registered successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Complaint Status Page ...");
+                window.location.href = 'S_ComplaintStatus.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Complaint Registration Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
 </asp:Content>

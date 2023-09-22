@@ -26,7 +26,8 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Cmp ID</th>
+                                            <th>Sl No</th>
+                                            <th>Cmp No</th>
                                             <th>Complaint</th>
                                             <th>Reply from Admin</th>
                                             <th>Status</th>
@@ -38,6 +39,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("complaint_id") %></td>
                                     <td><%# Eval("complaint") %></td>
                                     <td><%# Eval("reply") != DBNull.Value ? Eval("reply") : "Awaiting admin reply" %></td>

@@ -26,7 +26,14 @@ namespace Hostel_Management_System_Project
             {
                 con.Open();
                 string student_id = Session["student_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ct.complaint_id, st.student_id as st_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, complaint, ct.status as complaint_status, reply, ct.created_at as created_at from complaint_table ct inner join student_table st on st.student_id = ct.student_id where st.student_id = @student_id", con);
+                string query = @"
+                          select  ROW_NUMBER() OVER (ORDER BY ct.complaint_id) AS sl_no, 
+                          ct.complaint_id, st.student_id as st_id, st.name as st_name, st.email as st_email, 
+                          st.phone_number as st_phone, complaint, ct.status as complaint_status, reply, ct.created_at as created_at, ct.complaint_type 
+                          from complaint_table ct 
+                          inner join student_table st on st.student_id = ct.student_id 
+                          where st.student_id = 1015 and ct.complaint_type = 'Student';";
+                SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

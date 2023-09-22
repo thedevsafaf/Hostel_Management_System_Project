@@ -35,12 +35,15 @@ namespace Hostel_Management_System_Project
                 con.Close();
 
                 // Redirect to a success page or show a success message
-                Response.Redirect("FeedbackSuccess.aspx");
+                //Response.Redirect("FeedbackSuccess.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
             }
             catch (Exception ex)
             {
                 // Handle any exceptions (e.g., database error)
-                Response.Write("An error occurred: " + ex.Message);
+                string errorMessage = ex.Message;
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
         }
 

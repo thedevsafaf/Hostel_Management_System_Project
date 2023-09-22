@@ -45,14 +45,17 @@ namespace Hostel_Management_System_Project
 
                 // Show a success message or redirect to a success page
                 // You can use SweetAlert or any other method you prefer
-                //ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
-                Response.Redirect("StudentDashboard.aspx");
+                //Response.Redirect("StudentDashboard.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
+
             }
             else
             {
                 // Handle the case where the student is not logged in
                 // You can redirect them to the login page or display an error message
-                Response.Redirect("Login.aspx");
+                string errorMessage = "There is some issue with the complaint registration!";
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
         }
     }

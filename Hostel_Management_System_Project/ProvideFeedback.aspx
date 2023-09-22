@@ -34,4 +34,31 @@
             </div>
         </div>
     </main>
+
+    <%-- function to show alerts on successful & failed complaint registration --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Feedback Submission Successful',
+                text: 'Your feedback has been submitted successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Feedback Success Page ...");
+                window.location.href = 'FeedbackSuccess.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Feedback Submission Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
 </asp:Content>
