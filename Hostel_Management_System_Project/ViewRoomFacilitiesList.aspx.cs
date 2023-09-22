@@ -70,7 +70,7 @@ namespace Hostel_Management_System_Project
         private void BindRoomData(string selectedStatus, string searchQuery)
         {
             con.Open();
-            string query = "SELECT room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status IN ('Vacant', 'Occupied')";
+            string query = "SELECT ROW_NUMBER() OVER (ORDER BY room_id) AS sl_no, room_id, room_no, room_desc, room_status, created_at FROM room_facilities WHERE 1=1 AND room_status IN ('Vacant', 'Occupied')";
 
             // Add conditions based on the selected status and search query
             if (!string.IsNullOrEmpty(selectedStatus))
