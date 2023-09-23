@@ -10,7 +10,7 @@
             <%-- greet label --%>
             <h3 class="mt-4 text-light">Welcome, <%= Session["name"] %></h3>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Student Dashboard</li>
+                <li class="breadcrumb-item active">Parent Dashboard</li>
             </ol>
 
             <%--complaints table data--%>
@@ -26,10 +26,12 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Cmp ID</th>
+                                            <th>Sl No</th>
+                                            <th>Cmp No</th>
                                             <th>Complaint</th>
                                             <th>Reply from Admin</th>
                                             <th>Status</th>
+                                            <th>Raised by</th>
                                             <th>Created At</th>
                                         
                                         </tr>
@@ -38,10 +40,12 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("complaint_id") %></td>
                                     <td><%# Eval("complaint") %></td>
-                                    <td><%# Eval("reply") != DBNull.Value ? Eval("reply") : "Awaiting admin reply" %></td>
+                                    <td <%# Eval("reply") == DBNull.Value ? "style='color: cadetblue;'" : "" %>><b><%# Eval("reply") != DBNull.Value ? Eval("reply") : "Awaiting Admin reply" %></b></td>
                                     <td><%# Eval("complaint_status") %></td>
+                                    <td><%# Eval("complaint_type") %></td>
                                     <td><%# Eval("created_at") %></td>
                                    
                                 </tr>

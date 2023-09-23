@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -51,18 +52,28 @@ namespace Hostel_Management_System_Project
 
         protected void btn_RegisterComplaint_Click(object sender, EventArgs e)
         {
-            string complaintText = tb_Complaint.Text;
+            if (Session["parent_id"] != null)
+            {
+                string complaintText = tb_Complaint.Text;
 
-            // Insert the complaint into the complaint_table
-            InsertParentComplaint(complaintText);
+                // Insert the complaint into the complaint_table
+                InsertParentComplaint(complaintText);
 
-            // Clear the complaint textbox
-            tb_Complaint.Text = "";
+                // Clear the complaint textbox
+                tb_Complaint.Text = "";
 
-            // Show a success message or redirect to a success page
-            // You can use SweetAlert or any other method you prefer
-            //ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
-            Response.Redirect("ParentDashboard.aspx");
+                // Show a success message or redirect to a success page
+                // You can use SweetAlert or any other method you prefer
+                //Response.Redirect("StudentDashboard.aspx");
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
+            }
+            else
+            {
+                string errorMessage = "There is some issue with the complaint registration!";
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
+            }
+            
         }
     }
 }

@@ -26,30 +26,30 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Cmp ID</th>
+                                            <th>Sl No</th>
+                                            <th>Cmp No</th>
                                             <th>Name</th>
                                             <th>Phone</th>
                                             <th>Complaint</th>
                                             <th>Status</th>
                                             <th>Reply</th>
                                             <th>Created At</th>
-                                            <%--<th>Actions</th>--%>
+                                         
                                         </tr>
                                     </thead>
                                     <tbody>
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                    <td><%# Eval("sl_no") %></td>
                                     <td><%# Eval("complaint_id") %></td>
                                     <td><%# Eval("st_name") %></td>
                                     <td><%# Eval("st_phone") %></td>
                                     <td><%# Eval("complaint") %></td>
                                     <td><%# Eval("complaint_status") %></td>
-                                    <td><%# Eval("reply") %></td>
+                                    <td <%# Eval("reply") == DBNull.Value ? "style='color: cadetblue;'" : "" %>><b><%# Eval("reply") != DBNull.Value ? Eval("reply") : "Awaiting Admin reply" %></b></td>
                                     <td><%# Eval("created_at") %></td>
-                                     <%--<td>
-                                        <asp:Button ID="btn_Reply" runat="server" CssClass="btn btn-success" Text="REPLY"  CommandArgument='<%# Eval("complaint_id") %>' OnClick="btn_Reply_Click" />
-                                    </td>--%>
+                                    
                                 </tr>
                             </ItemTemplate>
                             <FooterTemplate>
