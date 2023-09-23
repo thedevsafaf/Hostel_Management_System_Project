@@ -81,4 +81,32 @@
             </main>
         </div>
     </div>
+
+    
+     <%-- function to show alerts on successful & failed payment --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment Successful',
+                text: 'Your payment has been done successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Parent Payment History Page ...");
+                window.location.href = 'P_ViewPaymentHistory.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Payment Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
 </asp:Content>

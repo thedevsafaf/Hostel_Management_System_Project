@@ -76,7 +76,7 @@
                 timer: 2000
             });
             setTimeout(function () {
-                console.log("Redirecting to Students Payment History Page ...");
+                console.log("Redirecting to Student Payment History Page ...");
                 window.location.href = 'S_ViewPaymentHistory.aspx';
             }, 2000);
         }

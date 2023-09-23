@@ -20,6 +20,23 @@ namespace Hostel_Management_System_Project
             }
         }
 
+        protected string GetStatusCssClass(string status)
+        {
+            switch (status)
+            {
+                case "Paid":
+                    return "status-paid";
+                case "Cancelled":
+                    return "status-cancelled";
+                case "Processing Refund":
+                    return "status-processing-refund";
+                case "Refunded":
+                    return "status-refunded";
+                default:
+                    return string.Empty; // No specific class for other values
+            }
+        }
+
         private void PopulateMyPaymentHistoryList()
         {
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))

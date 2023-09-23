@@ -85,13 +85,15 @@ namespace Hostel_Management_System_Project
                 UpdateRoomStatus(selectedBookingId);
 
                 // Redirect to a success page or display a success message
-                Response.Write("PaymentSuccess.aspx");
+                // Show a SweetAlert for successful room registration
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowSuccessAlert", "ShowSuccessAlert();", true);
             }
             catch (Exception exc)
             {
                 // Handle exceptions as needed
                 string errorMessage = exc.Message;
-                Response.Write(errorMessage);
+                // Show a SweetAlert for the error
+                ScriptManager.RegisterStartupScript(this, GetType(), "ShowErrorAlert", "ShowErrorAlert('" + errorMessage + "');", true);
             }
             finally
             {
