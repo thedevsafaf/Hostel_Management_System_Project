@@ -229,7 +229,8 @@
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <%--<li><a class="dropdown-item" href="#!">Logout</a></li>--%>
+                        <li><asp:HyperLink ID="btn_Logout" runat="server" class="dropdown-item" NavigateURL="~/Logout.aspx" >Logout</asp:HyperLink></li>
                     </ul>
                 </li>
             </ul>
@@ -359,11 +360,9 @@
                             </a>
 
 
-                            <%-- LOGOUT --%>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
-                                Logout
-                            </a>
+                             <%-- LOGOUT --%>
+                            <asp:HyperLink ID="sideBar_Logout" runat="server" class="nav-link" NavigateURL="~/Logout.aspx" ><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</asp:HyperLink>
+
 
                         </div>
                     </div>

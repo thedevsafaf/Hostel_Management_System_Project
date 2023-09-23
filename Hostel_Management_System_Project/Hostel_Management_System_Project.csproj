@@ -77,6 +77,7 @@
     <Content Include="ApprovalParentsList.aspx" />
     <Content Include="ApprovalStudentsList.aspx" />
     <Content Include="CancelBooking.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="P_CancelMyBooking.aspx" />
     <Content Include="P_ComplaintRegister.aspx" />
     <Content Include="ComplaintReply.aspx" />
@@ -236,6 +237,13 @@
     </Compile>
     <Compile Include="CancelBooking.aspx.designer.cs">
       <DependentUpon>CancelBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="P_CancelMyBooking.aspx.cs">
       <DependentUpon>P_CancelMyBooking.aspx</DependentUpon>

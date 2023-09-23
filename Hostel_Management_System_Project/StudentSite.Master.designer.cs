@@ -33,6 +33,24 @@ namespace Hostel_Management_System_Project
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// btn_Logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink btn_Logout;
+
+        /// <summary>
+        /// sideBar_Logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink sideBar_Logout;
+
+        /// <summary>
         /// lbl_LoggedInUser control.
         /// </summary>
         /// <remarks>
