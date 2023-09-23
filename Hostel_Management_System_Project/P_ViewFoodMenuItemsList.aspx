@@ -74,7 +74,7 @@
                                     <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Meal ID</th>
+                                                <th>Sl No</th>
                                                 <th>Name</th>
                                                 <th>Meal Time</th>
                                                 <th>Day</th>
@@ -87,11 +87,15 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr>
-                                        <td><%# Eval("meal_id") %></td>
+                                        <td><%# Eval("sl_no") %></td>
                                         <td><%# Eval("meal_name") %></td>
                                         <td><%# Eval("meal_time") %></td>
                                         <td><%# Eval("meal_day") %></td>
-                                        <td><%# Eval("meal_price") %></td>
+                                        <td>
+                                            <span style="font-weight: bold; color: cadetblue;">
+                                                <%# Eval("meal_price") %>
+                                            </span>
+                                        </td>
                                         <td><%# Eval("meal_description") %></td>
                                         <td><%# Eval("created_at") %></td>
                                     </tr>
