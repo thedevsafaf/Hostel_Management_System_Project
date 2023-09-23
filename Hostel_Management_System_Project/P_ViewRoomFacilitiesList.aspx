@@ -50,6 +50,7 @@
                                 <table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Sl No</th>
                                             <th>Room No</th>
                                             <th>Room Description</th>
                                             <th>Room Status</th>
@@ -59,6 +60,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
+                                     <td><%# Eval("sl_no") %></td>
                                     <td>
                                         <asp:HyperLink ID="lnk_RoomDetails" runat="server" NavigateUrl='<%# "S_RoomDetails.aspx?roomId=" + Eval("room_id") %>' Text='<%# Eval("room_no") %>' />
                                     </td>
