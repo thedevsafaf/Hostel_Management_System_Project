@@ -47,7 +47,20 @@ namespace Hostel_Management_System_Project
         {
             con.Open();
             int parent_id = Convert.ToInt32(Session["parent_id"]);
-            SqlCommand cmd = new SqlCommand("select bt.booking_id, bt.student_id, pt.parent_id, pt.name as pt_name, bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id inner join parent_table pt on pt.student_id = bt.student_id where pt.parent_id = @parent_id and rf.room_status = 'On Hold'", con);
+            string query = @"
+                    select 
+	                    bt.booking_id, bt.student_id, pt.parent_id, pt.name as pt_name, 
+	                    bt.booking_date,bt.status as booking_status, bt.booked_by, rf.room_id as booked_room_id, 
+	                    rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id 
+                    from 
+	                    booking_table bt 
+                    inner join 
+	                    room_facilities rf on bt.room_id = rf.room_id 
+                    inner join 
+	                    parent_table pt on pt.student_id = bt.student_id 
+                    where 
+	                    pt.parent_id = @parent_id and rf.room_status = 'On Hold' and bt.booked_by = 'Parent' and bt.status='Pending';";
+            SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@parent_id", parent_id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

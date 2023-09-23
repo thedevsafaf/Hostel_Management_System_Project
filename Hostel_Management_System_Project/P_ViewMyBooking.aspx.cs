@@ -45,7 +45,15 @@ namespace Hostel_Management_System_Project
             {
                 con.Open();
                 string parent_id = Session["parent_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, bt.booking_id, bt.student_id, pt.parent_id, pt.name as pt_name, bt.booking_date, bt.status as booking_status, rf.room_id, rf.room_no, rf.room_desc from booking_table bt left join room_facilities rf on bt.room_id = rf.room_id inner join parent_table pt on pt.student_id = bt.student_id where pt.parent_id = @parent_id;", con);
+                string query = @"
+                    select 
+                        ROW_NUMBER() OVER (ORDER BY bt.booking_id) AS SerialNumber, 
+                        bt.booking_id, bt.student_id, pt.parent_id, pt.name as pt_name, 
+                        bt.booking_date, bt.status as booking_status, bt.booked_by, rf.room_id, rf.room_no, rf.room_desc 
+                    from booking_table bt 
+                    inner join room_facilities rf on bt.room_id = rf.room_id 
+                    inner join parent_table pt on pt.student_id = bt.student_id where pt.parent_id = @parent_id;";
+                SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@parent_id", parent_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

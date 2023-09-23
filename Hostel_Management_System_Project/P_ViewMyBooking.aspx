@@ -22,7 +22,7 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Parent <%= Session["name"] %>'s Room Booking
+                    Parent <%= Session["name"] %>'s and Child Room Booking
                 </div>
                 <div class="card-body bg-dark">
                     <div class="table-responsive">
@@ -37,6 +37,7 @@
                                             <th>Room No</th>
                                             <th>Room Description</th>
                                             <th>Payment Actions</th>
+                                            <th>Booked By</th>
                                             <th>Booking Status</th>
                                         </tr>
                                     </thead>
@@ -54,6 +55,7 @@
                                              Eval("booking_status").ToString() == "Cancelled" || Eval("booking_status").ToString() == "Cancelled by Admin" ? "Refundable" :
                                              Eval("booking_status").ToString() == "Confirmed" ? "Paid" : "-" %>
                                     </td>
+                                    <td><%# Eval("booked_by") %></td>
                                     <td><asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("booking_status") %>' CssClass='<%# GetStatusCssClass(Eval("booking_status").ToString())+ " bold-status" %>'></asp:Label></td>
                                    
                                 </tr>

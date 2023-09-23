@@ -27,7 +27,17 @@ namespace Hostel_Management_System_Project
         {
             con.Open();
             int student_id = Convert.ToInt32(Session["student_id"]);
-            SqlCommand cmd = new SqlCommand("select bt.booking_id, bt.student_id,bt.booking_date,bt.status as booking_status, rf.room_id as booked_room_id, rf.room_no as booked_room_no, rf.room_desc, rf.room_status,bt.payment_id from booking_table bt inner join room_facilities rf on bt.room_id = rf.room_id where student_id = @student_id and rf.room_status = 'On Hold'", con);
+            string query = @"
+                select 
+                      bt.booking_id, bt.student_id,bt.booking_date,
+                      bt.status as booking_status, bt.booked_by, rf.room_id as booked_room_id,
+                      rf.room_no as booked_room_no, rf.room_desc, rf.room_status,
+                      bt.payment_id from booking_table bt 
+                inner join 
+                      room_facilities rf on bt.room_id = rf.room_id 
+                where 
+                      student_id = @student_id and rf.room_status = 'On Hold' and bt.booked_by = 'Student' and bt.status='Pending';";
+            SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@student_id", student_id);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
