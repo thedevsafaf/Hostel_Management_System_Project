@@ -32,6 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sl No</th>
+                                            <th>Booking No</th>
                                             <th>Booking Date</th>
                                             <th>Room No</th>
                                             <th>Room Description</th>
@@ -44,6 +45,7 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("SerialNumber") %></td>
+                                    <td><%# Eval("booking_id") %></td>
                                     <td><%# Eval("booking_date", "{0:dd-MM-yyyy}") %></td>
                                     <td><%# Eval("room_no") %></td>
                                     <td><%# Eval("room_desc").ToString().Length > 60 ? Eval("room_desc").ToString().Substring(0, 60) + "..." : Eval("room_desc") %></td>
@@ -52,7 +54,7 @@
                                              Eval("booking_status").ToString() == "Cancelled" || Eval("booking_status").ToString() == "Cancelled by Admin" ? "Refundable" :
                                              Eval("booking_status").ToString() == "Confirmed" ? "Paid" : "-" %>
                                     </td>
-                                    <td><%# Eval("booking_status") %></td>
+                                    <td><asp:Label ID="lbl_Status" runat="server" Text='<%# Eval("booking_status") %>' CssClass='<%# GetStatusCssClass(Eval("booking_status").ToString())+ " bold-status" %>'></asp:Label></td>
                                    
                                 </tr>
                             </ItemTemplate>

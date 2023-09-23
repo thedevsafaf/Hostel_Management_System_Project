@@ -77,4 +77,32 @@
             </div>
         </div>
     </main>
+
+       <%-- function to show alerts on successful & failed booking --%>
+
+    <script type="text/javascript">
+        function ShowSuccessAlert() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Booking Successful',
+                text: 'Your booking has been done successfully!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            setTimeout(function () {
+                console.log("Redirecting to Parent Bookings Page ...");
+                window.location.href = 'P_ViewMyBooking.aspx';
+            }, 2000);
+        }
+
+        function ShowErrorAlert(errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Booking Failed',
+                text: errorMessage,
+            });
+        }
+    </script>
+
+
 </asp:Content>
