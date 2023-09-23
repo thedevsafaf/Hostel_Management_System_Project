@@ -25,7 +25,7 @@ namespace Hostel_Management_System_Project
             {
                 con.Open();
                 string parent_id = Session["parent_id"].ToString();
-                SqlCommand cmd = new SqlCommand("select nt.notification_id, nt.student_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, pt.parent_id as parent_id, pt.name as pt_name, pt.email as pt_email, pt.phone_number as pt_phone, nt.message, nt.created_at from notification_table nt inner join student_table st on st.student_id = nt.student_id inner join parent_table pt on st.student_id = pt.student_id where pt.parent_id = @parent_id and nt.notification_type = 'Parent'", con);
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY nt.notification_id) AS sl_no, nt.notification_id, nt.student_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, pt.parent_id as parent_id, pt.name as pt_name, pt.email as pt_email, pt.phone_number as pt_phone, nt.message, nt.created_at, nt.notification_type from notification_table nt inner join student_table st on st.student_id = nt.student_id inner join parent_table pt on st.student_id = pt.student_id where pt.parent_id = @parent_id and nt.notification_type = 'Parent'", con);
                 cmd.Parameters.AddWithValue("@parent_id", parent_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
