@@ -25,7 +25,7 @@ namespace Hostel_Management_System_Project
             using (SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-JRHVVPL\SQLEXPRESS;Initial Catalog=hostel_db;Integrated Security=True"))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("select ct.complaint_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, complaint, ct.status as complaint_status, reply, ct.created_at as created_at from complaint_table ct inner join student_table st on st.student_id = ct.student_id where ct.status IN ('Open','In Progress','Resolved','Rejected','Pending','On Hold','Escalated');", con);
+                SqlCommand cmd = new SqlCommand("select ROW_NUMBER() OVER (ORDER BY ct.complaint_id) AS sl_no, ct.complaint_id, st.name as st_name, st.email as st_email, st.phone_number as st_phone, complaint, ct.status as complaint_status, reply, ct.created_at as created_at, ct.complaint_type from complaint_table ct inner join student_table st on st.student_id = ct.student_id where ct.status IN ('Open','In Progress','Resolved','Rejected','Pending','On Hold','Escalated');", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

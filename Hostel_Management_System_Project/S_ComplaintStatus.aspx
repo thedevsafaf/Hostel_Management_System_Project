@@ -31,6 +31,7 @@
                                             <th>Complaint</th>
                                             <th>Reply from Admin</th>
                                             <th>Status</th>
+                                            <th>Raised By</th>
                                             <th>Created At</th>
                                         
                                         </tr>
@@ -44,6 +45,7 @@
                                     <td><%# Eval("complaint") %></td>
                                     <td><%# Eval("reply") != DBNull.Value ? Eval("reply") : "Awaiting admin reply" %></td>
                                     <td><%# Eval("complaint_status") %></td>
+                                    <td><%# Eval("complaint_type") %></td>
                                     <td><%# Eval("created_at") %></td>
                                    
                                 </tr>

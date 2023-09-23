@@ -32,7 +32,7 @@ namespace Hostel_Management_System_Project
                           st.phone_number as st_phone, complaint, ct.status as complaint_status, reply, ct.created_at as created_at, ct.complaint_type 
                           from complaint_table ct 
                           inner join student_table st on st.student_id = ct.student_id 
-                          where st.student_id = 1015 and ct.complaint_type = 'Student';";
+                          where st.student_id = @student_id and ct.complaint_type in ('Student','Parent');";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@student_id", student_id);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
